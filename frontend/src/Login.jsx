@@ -1,6 +1,10 @@
+// Login.jsx
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -21,10 +25,31 @@ const Login = () => {
           borderRadius: "8px",
           boxShadow: "0 20px 45px rgba(15,23,42,0.35)",
           padding: "26px 26px 20px",
+          position: "relative",
         }}
       >
+        {/* Close button */}
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            width: "24px",
+            height: "24px",
+            borderRadius: "999px",
+            border: "none",
+            backgroundColor: "#e5e7eb",
+            cursor: "pointer",
+            fontSize: "16px",
+            lineHeight: "24px",
+          }}
+        >
+          ×
+        </button>
+
         {/* Username */}
-        <div style={{ marginBottom: "14px" }}>
+        <div style={{ marginBottom: "14px", marginTop: "10px" }}>
           <label
             style={{
               display: "block",
@@ -117,8 +142,8 @@ const Login = () => {
             marginBottom: "14px",
           }}
         >
-          <a
-            href="#"
+          <Link
+            to="/forgot-password"
             style={{
               fontSize: "12px",
               color: "#2563eb",
@@ -126,7 +151,7 @@ const Login = () => {
             }}
           >
             Lost your password?
-          </a>
+          </Link>
         </div>
 
         <hr style={{ borderColor: "#e5e7eb", marginBottom: "12px" }} />
@@ -140,8 +165,8 @@ const Login = () => {
           }}
         >
           Don&apos;t have an account yet?{" "}
-          <a
-            href="#"
+          <Link
+            to="/register"
             style={{
               color: "#2563eb",
               textDecoration: "none",
@@ -149,7 +174,7 @@ const Login = () => {
             }}
           >
             Sign up
-          </a>
+          </Link>
         </div>
       </div>
     </div>

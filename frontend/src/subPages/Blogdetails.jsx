@@ -1,20 +1,19 @@
+// subPages/Blogdetails.jsx
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 const recentPosts = [
   {
     id: 1,
-    title: "How to Write a Blog Post People Will Love in 5 Steps",
-    date: "December 1, 2025",
-  },
-  {
-    id: 2,
+    slug: "content-marketing-trends",
     title: "9 Content Marketing Trends and Ideas to Increase Traffic",
     date: "November 22, 2025",
   },
   {
-    id: 3,
-    title: "The Ultimate Strategies to Improve Sales Conversion",
-    date: "November 10, 2025",
+    id: 2,
+    slug: "write-blog-post-people-love",
+    title: "How to Write a Blog Post People Will Love in 5 Steps",
+    date: "December 1, 2025",
   },
 ];
 
@@ -27,6 +26,10 @@ const categories = [
 ];
 
 const BlogDetails = () => {
+  const { slug } = useParams();
+
+  const current = recentPosts.find((p) => p.slug === slug) || recentPosts[0];
+
   return (
     <section
       style={{
@@ -52,8 +55,14 @@ const BlogDetails = () => {
             color: "#6b7280",
           }}
         >
-          Home / Promotions / 9 Content Marketing Trends and Ideas to Increase
-          Traffic
+          <Link to="/" style={{ color: "#6b7280", textDecoration: "none" }}>
+            Home
+          </Link>{" "}
+          /{" "}
+          <Link to="/blog" style={{ color: "#6b7280", textDecoration: "none" }}>
+            Promotions
+          </Link>{" "}
+          / {current.title}
           <h1
             style={{
               fontSize: "20px",
@@ -62,7 +71,7 @@ const BlogDetails = () => {
               marginTop: "6px",
             }}
           >
-            9 Content Marketing Trends and Ideas to Increase Traffic
+            {current.title}
           </h1>
         </div>
 
@@ -84,12 +93,7 @@ const BlogDetails = () => {
               padding: "18px 18px 24px",
             }}
           >
-            {/* Featured image */}
-            <div
-              style={{
-                marginBottom: "14px",
-              }}
-            >
+            <div style={{ marginBottom: "14px" }}>
               <img
                 src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1000&q=80"
                 alt="Blog cover"
@@ -102,7 +106,7 @@ const BlogDetails = () => {
               />
             </div>
 
-            {/* Intro text */}
+            {/* The rest is your original dummy content */}
             <p
               style={{
                 fontSize: "13px",
@@ -116,7 +120,6 @@ const BlogDetails = () => {
               Sed sit amet augue at arcu posuere volutpat sit amet vel nibh.
             </p>
 
-            {/* Bullet list */}
             <ul
               style={{
                 paddingLeft: "20px",
@@ -126,13 +129,12 @@ const BlogDetails = () => {
               }}
             >
               <li>Unbelievable dollar general application</li>
-              <li>The science of the social world</li>
-              <li>What everyone is saying about it</li>
+              <li>The science article world</li>
+              <li>What everyone is saying about</li>
               <li>An expert interview series</li>
               <li>Cool tech gadgets by the numbers</li>
             </ul>
 
-            {/* Subheading + ordered list */}
             <h2
               style={{
                 fontSize: "15px",
@@ -155,7 +157,6 @@ const BlogDetails = () => {
               <li>Why our world would end</li>
             </ol>
 
-            {/* Paragraph block */}
             <p
               style={{
                 fontSize: "13px",
@@ -166,8 +167,7 @@ const BlogDetails = () => {
             >
               How cool tech gadgets can help predict the future. The 10 best
               passport application twitter feeds to follow. 9 ideas for business
-              adventures. The unconventional guide to wholesale accessories. How
-              to be unpopular in the science article niche.
+              adventures. The unconventional guide to wholesale accessories.
             </p>
 
             <p
@@ -178,13 +178,10 @@ const BlogDetails = () => {
                 marginBottom: "18px",
               }}
             >
-              Aperiam omnis amet excepturi ullam labore. Volup tatem hic natus
-              maxime dolorem velit totam ex, numquam odio laborum quasi velit
-              rem nobis. Aspernatur ad obcaecati assumenda, consequuntur
-              deleniti ipsum nesciunt. Doloremque optio atque ad.
+              Aperiam omnis amet excepturi ullam labore. Voluptatem hic natus
+              maxime dolorem vel totam ex numquam odio laborum quasi.
             </p>
 
-            {/* Another subheading */}
             <h2
               style={{
                 fontSize: "15px",
@@ -203,15 +200,12 @@ const BlogDetails = () => {
               }}
             >
               Id ab earum voluptate vel aliquid. Et ea consequatur minima aut
-              beatae minus velit alias cupiditate aliquid quidem deleniti. Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam
-              minus enim quasi fuga dolore!
+              beatae minus velit alias cupiditate aliquid quidem deleniti.
             </p>
           </article>
 
-          {/* Sidebar */}
+          {/* Sidebar (recent posts + categories, same design) */}
           <aside>
-            {/* Recent posts */}
             <div
               style={{
                 backgroundColor: "#ffffff",
@@ -249,23 +243,24 @@ const BlogDetails = () => {
                       marginBottom: "8px",
                     }}
                   >
-                    <div
+                    <Link
+                      to={`/blog/${post.slug}`}
                       style={{
                         cursor: "pointer",
                         color: "#111827",
                         fontWeight: 500,
                         marginBottom: "2px",
+                        textDecoration: "none",
                       }}
                     >
                       {post.title}
-                    </div>
+                    </Link>
                     <div style={{ color: "#9ca3af" }}>{post.date}</div>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Categories */}
             <div
               style={{
                 backgroundColor: "#ffffff",

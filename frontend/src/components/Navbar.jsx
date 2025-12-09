@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+// components/Navbar.jsx
 import React, { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  // eslint-disable-next-line no-unused-vars
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isShopByCategoriesOpen, setIsShopByCategoriesOpen] = useState(false);
+  const navigate = useNavigate();
 
   const categories = [
     "Electronics",
@@ -21,49 +24,52 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      style={{
-        fontFamily: "Roboto, sans-serif",
-        borderBottom: "1px solid #e5e7eb",
-      }}
-    >
+    <header style={{ fontFamily: "Roboto, sans-serif" }}>
       {/* Top bar */}
       <div
         style={{
-          backgroundColor: "#f8f8f8",
-          fontSize: "13px",
-          color: "#555",
-          borderBottom: "1px solid #eee",
+          backgroundColor: "#f3f4f6",
+          padding: "6px 0",
+          fontSize: "12px",
         }}
       >
         <div
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "8px 20px",
+            padding: "0 15px",
             display: "flex",
-            alignItems: "center",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <div style={{ display: "flex", gap: "30px" }}>
-            <span>(+91) 9876-543-210</span>
-            <span>support@demo.com</span>
+          <div style={{ color: "#4b5563" }}>
+            (+91) 9876-543-210 &nbsp; | &nbsp; support@demo.com
           </div>
+          <div style={{ display: "flex", gap: "18px" }}>
+            {["About Us", "Blog", "Contact Us", "FAQs"].map((item) => {
+              const to =
+                item === "About Us"
+                  ? "/about"
+                  : item === "Blog"
+                  ? "/blog"
+                  : item === "Contact Us"
+                  ? "/contact"
+                  : "/faqs";
 
-          <div style={{ display: "flex", gap: "25px" }}>
-            {["About Us", "Blog", "Contact Us", "FAQs"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                style={{
-                  textDecoration: "none",
-                  color: "#555",
-                }}
-              >
-                {item}
-              </a>
-            ))}
+              return (
+                <Link
+                  key={item}
+                  to={to}
+                  style={{
+                    textDecoration: "none",
+                    color: "#4b5563",
+                  }}
+                >
+                  {item}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -71,305 +77,279 @@ const Navbar = () => {
       {/* Middle bar */}
       <div
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "15px 20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          backgroundColor: "#ffffff",
+          padding: "14px 0",
+          borderBottom: "1px solid #e5e7eb",
         }}
       >
-        {/* Left: logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div style={{ fontSize: "30px", fontWeight: 700 }}>
-            <span style={{ color: "#007bff" }}>E-Commerce</span>
-          </div>
-          <div
-            style={{
-              fontSize: "11px",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "#666",
-              marginLeft: "10px",
-            }}
-          >
-            DIGITAL STORE
-          </div>
-        </div>
-
-        {/* Center: category + search */}
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            maxWidth: "650px",
-            margin: "0 40px",
-          }}
-        >
-          {/* Category select */}
-          <div style={{ position: "relative", flexShrink: 0 }}>
-            <select
-              style={{
-                height: "44px",
-                border: "1px solid #e5e7eb",
-                borderRight: "none",
-                borderTopLeftRadius: "4px",
-                borderBottomLeftRadius: "4px",
-                padding: "0 38px 0 14px",
-                fontSize: "13px",
-                color: "#555",
-                outline: "none",
-                appearance: "none",
-                backgroundColor: "white",
-                width: "180px",
-              }}
-            >
-              <option>All Categories</option>
-              <option>Electronics</option>
-              <option>Fashion</option>
-              <option>Home & Garden</option>
-              <option>Sports</option>
-            </select>
-            <span
-              style={{
-                position: "absolute",
-                right: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "10px",
-                color: "#999",
-                pointerEvents: "none",
-              }}
-            >
-              ▼
-            </span>
-          </div>
-
-          {/* Search input */}
-          <input
-            type="text"
-            placeholder="Search products..."
-            style={{
-              flex: 1,
-              height: "44px",
-              border: "1px solid #e5e7eb",
-              borderLeft: "none",
-              borderRight: "none",
-              padding: "0 14px",
-              fontSize: "13px",
-              color: "#444",
-              outline: "none",
-              minWidth: "0",
-            }}
-          />
-          <button
-            style={{
-              height: "44px",
-              padding: "0 26px",
-              border: "none",
-              backgroundColor: "#0063d1",
-              color: "#fff",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.5px",
-              cursor: "pointer",
-              borderTopRightRadius: "4px",
-              borderBottomRightRadius: "4px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            SEARCH
-          </button>
-        </div>
-
-        {/* Right: login, wishlist, cart */}
-        <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-          <button
-            style={{
-              border: "none",
-              background: "none",
-              fontSize: "14px",
-              color: "#222",
-              cursor: "pointer",
-              padding: "0",
-            }}
-          >
-            Login
-          </button>
-
-          {/* Wishlist icon with badge */}
-          <button
-            style={{
-              position: "relative",
-              border: "none",
-              background: "none",
-              cursor: "pointer",
-              padding: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span style={{ fontSize: "20px", color: "#555" }}>♡</span>
-            <span
-              style={{
-                position: "absolute",
-                top: "-8px",
-                right: "-8px",
-                backgroundColor: "#0063d1",
-                color: "#fff",
-                fontSize: "10px",
-                borderRadius: "50%",
-                width: "16px",
-                height: "16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontWeight: "bold",
-              }}
-            >
-              2
-            </span>
-          </button>
-
-          {/* Cart icon with badge */}
-          <button
-            style={{
-              position: "relative",
-              border: "none",
-              background: "none",
-              cursor: "pointer",
-              padding: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span style={{ fontSize: "20px", color: "#555" }}>🛒</span>
-            <span
-              style={{
-                position: "absolute",
-                top: "-8px",
-                right: "-8px",
-                backgroundColor: "#0063d1",
-                color: "#fff",
-                fontSize: "10px",
-                borderRadius: "50%",
-                width: "16px",
-                height: "16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontWeight: "bold",
-              }}
-            >
-              0
-            </span>
-          </button>
-        </div>
-      </div>
-
-      {/* Bottom blue menu bar */}
-      <div style={{ backgroundColor: "#0063d1", position: "relative" }}>
         <div
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
+            padding: "0 15px",
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            height: "50px",
-            color: "#fff",
-            padding: "0 20px",
+            gap: "24px",
           }}
         >
-          {/* Left: hamburger + text with dropdown */}
+          {/* Logo */}
+          <Link to="/" style={{ textDecoration: "none", color: "#111827" }}>
+            <div style={{ fontWeight: 800, fontSize: "20px" }}>E-Commerce</div>
+            <div
+              style={{
+                fontSize: "11px",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "#6b7280",
+              }}
+            >
+              DIGITAL STORE
+            </div>
+          </Link>
+
+          {/* Category + search */}
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            {/* Category select */}
+            <div
+              style={{
+                minWidth: "150px",
+                border: "1px solid #e5e7eb",
+                borderRadius: "4px",
+                padding: "0 10px",
+                height: "38px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                fontSize: "13px",
+                color: "#374151",
+                cursor: "pointer",
+              }}
+              onClick={() => setIsCategoriesOpen((v) => !v)}
+            >
+              <span>All Categories</span>
+              <span>▾</span>
+            </div>
+
+            {/* Search */}
+            <div
+              style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+                overflow: "hidden",
+                border: "1px solid #e5e7eb",
+              }}
+            >
+              <input
+                placeholder="Search products..."
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  padding: "0 10px",
+                  height: "38px",
+                  fontSize: "13px",
+                }}
+              />
+              <button
+                style={{
+                  width: "90px",
+                  height: "38px",
+                  border: "none",
+                  backgroundColor: "#2563eb",
+                  color: "#ffffff",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                }}
+              >
+                SEARCH
+              </button>
+            </div>
+          </div>
+
+          {/* Right: login, wishlist, addToCart, cart */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              fontSize: "13px",
+            }}
+          >
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "#111827" }}
+            >
+              Login
+            </Link>
+
+            {/* Wishlist icon → /wishlist */}
+            <button
+              type="button"
+              onClick={() => navigate("/wishlist")}
+              style={{
+                position: "relative",
+                width: "32px",
+                height: "32px",
+                borderRadius: "999px",
+                border: "1px solid #e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                backgroundColor: "#ffffff",
+              }}
+            >
+              ♥
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-5px",
+                  right: "-5px",
+                  backgroundColor: "#ef4444",
+                  color: "#ffffff",
+                  borderRadius: "999px",
+                  fontSize: "10px",
+                  padding: "0 5px",
+                }}
+              >
+                2
+              </span>
+            </button>
+
+            {/* New AddToCart icon → /added-to-cart */}
+            <button
+              type="button"
+              onClick={() => navigate("/added-to-cart")}
+              style={{
+                position: "relative",
+                width: "32px",
+                height: "32px",
+                borderRadius: "999px",
+                border: "1px solid #e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                backgroundColor: "#ffffff",
+                fontSize: "16px",
+              }}
+            >
+              +
+            </button>
+
+            {/* Cart icon → /cart */}
+            <button
+              type="button"
+              onClick={() => navigate("/cart")}
+              style={{
+                position: "relative",
+                width: "32px",
+                height: "32px",
+                borderRadius: "999px",
+                border: "1px solid #e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                backgroundColor: "#ffffff",
+              }}
+            >
+              🛒
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-5px",
+                  right: "-5px",
+                  backgroundColor: "#22c55e",
+                  color: "#ffffff",
+                  borderRadius: "999px",
+                  fontSize: "10px",
+                  padding: "0 5px",
+                }}
+              >
+                0
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom menu bar */}
+      <div
+        style={{
+          backgroundColor: "#2563eb",
+          color: "#ffffff",
+          fontSize: "13px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 15px",
+            display: "flex",
+            alignItems: "center",
+            height: "44px",
+          }}
+        >
+          {/* Shop by categories trigger */}
           <div
             style={{
               position: "relative",
-              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              paddingRight: "18px",
+              marginRight: "18px",
+              borderRight: "1px solid rgba(255,255,255,0.2)",
+              cursor: "pointer",
             }}
-            onMouseEnter={() => setIsShopByCategoriesOpen(true)}
-            onMouseLeave={() => setIsShopByCategoriesOpen(false)}
           >
-            <button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "0 24px",
-                height: "100%",
-                backgroundColor: "#0056b3",
-                border: "none",
-                color: "#fff",
-                cursor: "pointer",
-                fontWeight: 600,
-                fontSize: "14px",
-                whiteSpace: "nowrap",
-              }}
+            {/* Click area to toggle */}
+            <div
+              onClick={() => setIsShopByCategoriesOpen((prev) => !prev)}
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              {/* Hamburger icon */}
-              <div
-                style={{ position: "relative", width: "16px", height: "14px" }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    width: "16px",
-                    height: "2px",
-                    backgroundColor: "#fff",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "6px",
-                    left: "0",
-                    width: "16px",
-                    height: "2px",
-                    backgroundColor: "#fff",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "12px",
-                    left: "0",
-                    width: "16px",
-                    height: "2px",
-                    backgroundColor: "#fff",
-                  }}
-                />
-              </div>
-              <span>SHOP BY CATEGORIES</span>
-            </button>
+              <span style={{ fontSize: "18px" }}>☰</span>
+              <span style={{ fontWeight: 600 }}>SHOP BY CATEGORIES</span>
+            </div>
 
-            {/* Categories Dropdown */}
             {isShopByCategoriesOpen && (
               <div
                 style={{
                   position: "absolute",
-                  top: "100%",
-                  left: "0",
-                  width: "240px",
-                  backgroundColor: "white",
-                  border: "1px solid #e5e7eb",
-                  borderTop: "none",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                  zIndex: 1000,
+                  top: "44px",
+                  left: 0,
+                  backgroundColor: "#ffffff",
+                  color: "#111827",
+                  boxShadow: "0 10px 25px rgba(15,23,42,0.16)",
+                  borderRadius: "4px",
+                  padding: "8px 0",
+                  width: "220px",
+                  zIndex: 20,
                 }}
+                // clicking anywhere inside does NOT close automatically
+                // you can optionally close on mouse leave of the menu itself:
+                onMouseLeave={() => setIsShopByCategoriesOpen(false)}
               >
                 {categories.map((category, index) => (
-                  <a
+                  <div
                     key={index}
-                    href="#"
                     style={{
-                      display: "block",
-                      padding: "12px 20px",
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "14px",
-                      borderBottom: "1px solid #f0f0f0",
-                      transition: "all 0.2s",
+                      padding: "8px 14px",
+                      fontSize: "13px",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.backgroundColor = "#f5f5f5";
@@ -379,25 +359,21 @@ const Navbar = () => {
                       e.target.style.backgroundColor = "white";
                       e.target.style.color = "#333";
                     }}
+                    // example: navigate to a filtered shop page
+                    onClick={() => {
+                      // navigate(`/shop?category=${encodeURIComponent(category)}`);
+                      setIsShopByCategoriesOpen(false);
+                    }}
                   >
                     {category}
-                  </a>
+                  </div>
                 ))}
               </div>
             )}
           </div>
 
           {/* Main nav links */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginLeft: "30px",
-              gap: "30px",
-              fontSize: "14px",
-              fontWeight: 500,
-            }}
-          >
+          <nav style={{ display: "flex", gap: "18px" }}>
             {[
               "Home",
               "Shop",
@@ -405,25 +381,31 @@ const Navbar = () => {
               "Products",
               "Top Deals",
               "Elements",
-            ].map((item) => (
-              <a
-                key={item}
-                href="#"
-                style={{
-                  color: "#fff",
-                  textDecoration: "none",
-                  padding: "16px 0",
-                  position: "relative",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+            ].map((item) => {
+              const to =
+                item === "Home"
+                  ? "/"
+                  : item === "Shop" || item === "Products"
+                  ? "/shop"
+                  : "#";
+              return (
+                <NavLink
+                  key={item}
+                  to={to}
+                  style={({ isActive }) => ({
+                    textDecoration: "none",
+                    color: isActive ? "#ffffff" : "rgba(255,255,255,0.9)",
+                    fontWeight: isActive ? 600 : 400,
+                  })}
+                >
+                  {item}
+                </NavLink>
+              );
+            })}
+          </nav>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

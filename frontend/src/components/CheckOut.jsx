@@ -1,592 +1,587 @@
-import React, { useState } from "react";
+// CheckOut.jsx
+import React from "react";
 
 const CheckOut = () => {
-  const basePrice = 67;
-  const items = [
-    { id: 1, title: "Installation & Setup", price: 49 },
-    { id: 2, title: "Must-Have Plugins", price: 49 },
-  ];
-  const handlingFee = 2;
-  const total =
-    basePrice + handlingFee + items.reduce((sum, item) => sum + item.price, 0);
-
-  const [paymentMethod, setPaymentMethod] = useState("card");
+  const subtotal = 29.9;
+  const total = subtotal;
 
   return (
     <section
       style={{
-        backgroundColor: "#f5f7fb",
         minHeight: "100vh",
-        padding: "30px 0 50px",
-        fontFamily: "Roboto, sans-serif",
+        backgroundColor: "#f5f5f8",
+        fontFamily: "Roboto, system-ui, sans-serif",
+        padding: "40px 0 60px 0",
       }}
     >
       <div
         style={{
-          maxWidth: "1100px",
+          maxWidth: "960px",
           margin: "0 auto",
-          padding: "0 15px",
-          boxSizing: "border-box",
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 0.9fr)",
-          gap: "24px",
-          alignItems: "flex-start",
+          padding: "0 20px",
+          textAlign: "center",
         }}
       >
-        {/* LEFT: contact + payment */}
+        {/* Logo */}
+        <div style={{ marginBottom: "8px", fontWeight: 700 }}>Logo</div>
+
+        {/* Title + subtitle */}
+        <h1
+          style={{
+            fontSize: "26px",
+            fontWeight: 700,
+            marginBottom: "6px",
+            color: "#111827",
+          }}
+        >
+          You are almost there
+        </h1>
+        <p
+          style={{
+            fontSize: "13px",
+            color: "#6b7280",
+            marginBottom: "14px",
+          }}
+        >
+          Adipisicing bibendum id a condimentum risus nec sed malesuada at etiam
+          egestas.
+        </p>
+
+        {/* small trust badges */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "18px",
+            fontSize: "11px",
+            color: "#9ca3af",
+            marginBottom: "22px",
+          }}
+        >
+          <span>🔒 SSL secured checkout</span>
+          <span>🕑 24/7 support available</span>
+          <span>💳 Payment options</span>
+        </div>
+
+        {/* Main white card */}
         <div
           style={{
             backgroundColor: "#ffffff",
-            borderRadius: "8px",
-            boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
-            padding: "18px 20px 22px",
+            borderRadius: "14px",
+            boxShadow: "0 20px 45px rgba(15,23,42,0.12)",
+            padding: "22px 26px 26px",
+            textAlign: "left",
           }}
         >
-          <h1
-            style={{
-              fontSize: "22px",
-              fontWeight: 700,
-              marginBottom: "18px",
-            }}
-          >
-            Secure Checkout
-          </h1>
-
-          {/* 1. Contact details */}
-          <div style={{ marginBottom: "20px" }}>
-            <h2
-              style={{
-                fontSize: "16px",
-                fontWeight: 700,
-                marginBottom: "4px",
-              }}
-            >
-              1. Contact Details
-            </h2>
-            <p
-              style={{
-                fontSize: "12px",
-                color: "#6b7280",
-                marginBottom: "12px",
-              }}
-            >
-              To use saved payment methods or bonuses, please{" "}
-              <span
-                style={{
-                  color: "#2563eb",
-                  cursor: "pointer",
-                }}
-              >
-                Sign In
-              </span>
-              .
-            </p>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-                gap: "14px",
-              }}
-            >
-              <div>
-                <label
-                  style={{
-                    display: "block",
-                    fontSize: "12px",
-                    fontWeight: 500,
-                    marginBottom: "4px",
-                  }}
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  style={{
-                    width: "100%",
-                    height: "36px",
-                    borderRadius: "4px",
-                    border: "1px solid #d1d5db",
-                    padding: "0 10px",
-                    fontSize: "13px",
-                  }}
-                />
-              </div>
-              <div>
-                <label
-                  style={{
-                    display: "block",
-                    fontSize: "12px",
-                    fontWeight: 500,
-                    marginBottom: "4px",
-                  }}
-                >
-                  Your phone number
-                </label>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "90px minmax(0, 1fr)",
-                    gap: "6px",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      borderRadius: "4px",
-                      border: "1px solid #d1d5db",
-                      padding: "0 8px",
-                      fontSize: "12px",
-                      gap: "4px",
-                    }}
-                  >
-                    <span>🇧🇩</span>
-                    <select
-                      style={{
-                        border: "none",
-                        outline: "none",
-                        fontSize: "12px",
-                        background: "transparent",
-                        width: "100%",
-                      }}
-                      defaultValue="+880"
-                    >
-                      <option value="+880">+880</option>
-                      <option value="+1">+1</option>
-                      <option value="+91">+91</option>
-                    </select>
-                  </div>
-                  <input
-                    type="tel"
-                    style={{
-                      width: "100%",
-                      height: "36px",
-                      borderRadius: "4px",
-                      border: "1px solid #d1d5db",
-                      padding: "0 10px",
-                      fontSize: "13px",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 2. Payment method */}
-          <div>
-            <h2
-              style={{
-                fontSize: "16px",
-                fontWeight: 700,
-                marginBottom: "8px",
-              }}
-            >
-              2. Select your payment method
-            </h2>
-
-            {/* Tabs */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                marginBottom: "16px",
-              }}
-            >
-              <button
-                onClick={() => setPaymentMethod("card")}
-                style={{
-                  padding: "10px 0",
-                  borderTopLeftRadius: "4px",
-                  borderTopRightRadius: 0,
-                  borderBottom:
-                    paymentMethod === "card" ? "none" : "1px solid #e5e7eb",
-                  borderTop: "2px solid #22c55e",
-                  borderLeft: "2px solid #22c55e",
-                  borderRight: "2px solid #22c55e",
-                  backgroundColor:
-                    paymentMethod === "card" ? "#f0fdf4" : "#f9fafb",
-                  fontSize: "13px",
-                  cursor: "pointer",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "11px",
-                    color: "#6b7280",
-                    marginBottom: "2px",
-                  }}
-                >
-                  stripe
-                </div>
-                <div>Card</div>
-              </button>
-              <button
-                onClick={() => setPaymentMethod("paypal")}
-                style={{
-                  padding: "10px 0",
-                  borderTopRightRadius: "4px",
-                  borderTopLeftRadius: 0,
-                  border: "1px solid #e5e7eb",
-                  backgroundColor:
-                    paymentMethod === "paypal" ? "#e0f2fe" : "#f9fafb",
-                  fontSize: "13px",
-                  cursor: "pointer",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                  }}
-                >
-                  PayPal
-                </div>
-              </button>
-            </div>
-
-            {/* Card form */}
-            {paymentMethod === "card" && (
-              <div
-                style={{
-                  border: "1px solid #22c55e",
-                  borderRadius: "0 4px 4px 4px",
-                  padding: "14px 14px 16px",
-                  marginBottom: "16px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns:
-                      "minmax(0, 1.6fr) minmax(0, 0.9fr) minmax(0, 0.9fr)",
-                    gap: "10px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "12px",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      Card Number
-                    </label>
-                    <input
-                      type="text"
-                      style={{
-                        width: "100%",
-                        height: "34px",
-                        borderRadius: "4px",
-                        border: "1px solid #d1d5db",
-                        padding: "0 8px",
-                        fontSize: "13px",
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "12px",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      MM/YY
-                    </label>
-                    <input
-                      type="text"
-                      style={{
-                        width: "100%",
-                        height: "34px",
-                        borderRadius: "4px",
-                        border: "1px solid #d1d5db",
-                        padding: "0 8px",
-                        fontSize: "13px",
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "12px",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      CVC
-                    </label>
-                    <input
-                      type="text"
-                      style={{
-                        width: "100%",
-                        height: "34px",
-                        borderRadius: "4px",
-                        border: "1px solid #d1d5db",
-                        padding: "0 8px",
-                        fontSize: "13px",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(0, 1.6fr) auto",
-                    gap: "10px",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "12px",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      Cardholder Name
-                    </label>
-                    <input
-                      type="text"
-                      style={{
-                        width: "100%",
-                        height: "34px",
-                        borderRadius: "4px",
-                        border: "1px solid #d1d5db",
-                        padding: "0 8px",
-                        fontSize: "13px",
-                      }}
-                    />
-                  </div>
-                  <label
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "12px",
-                      color: "#6b7280",
-                      marginTop: "18px",
-                    }}
-                  >
-                    <input type="checkbox" />
-                    Save card
-                  </label>
-                </div>
-              </div>
-            )}
-
-            {/* Accepted cards text */}
-            <div
-              style={{
-                fontSize: "12px",
-                color: "#6b7280",
-                marginBottom: "12px",
-              }}
-            >
-              We accept: VISA, MasterCard, American Express, Discover and more.
-              Stripe is a trustful and secure gateway which accepts most popular
-              credit and debit cards.
-            </div>
-
-            {/* Policy checkbox */}
-            <label
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "8px",
-                fontSize: "12px",
-                color: "#4b5563",
-                marginBottom: "14px",
-              }}
-            >
-              <input type="checkbox" style={{ marginTop: "3px" }} />
-              <span>
-                I agree that my data will be stored and handled according to the{" "}
-                <a
-                  href="#"
-                  style={{ color: "#2563eb", textDecoration: "none" }}
-                >
-                  Privacy Policy
-                </a>{" "}
-                and{" "}
-                <a
-                  href="#"
-                  style={{ color: "#2563eb", textDecoration: "none" }}
-                >
-                  Terms of Use
-                </a>
-                .
-              </span>
-            </label>
-
-            {/* Pay now button (disabled style) */}
-            <button
-              style={{
-                width: "100%",
-                height: "42px",
-                borderRadius: "4px",
-                border: "1px solid #d1d5db",
-                backgroundColor: "#e5e7eb",
-                color: "#9ca3af",
-                fontSize: "14px",
-                fontWeight: 600,
-                cursor: "not-allowed",
-              }}
-            >
-              Pay Now
-            </button>
-          </div>
-        </div>
-
-        {/* RIGHT: order summary */}
-        <aside>
+          {/* Steps */}
           <div
             style={{
-              backgroundColor: "#ffffff",
-              borderRadius: "8px",
-              boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
-              padding: "14px 14px 16px",
-              marginBottom: "14px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "50px",
+              fontSize: "12px",
+              marginBottom: "22px",
+              color: "#6b7280",
             }}
           >
-            <h3
-              style={{
-                fontSize: "14px",
-                fontWeight: 700,
-                marginBottom: "10px",
-              }}
-            >
-              Order Summary
-            </h3>
-
-            {/* Product info */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "70px minmax(0, 1fr)",
-                gap: "10px",
-                marginBottom: "10px",
-              }}
-            >
+            {[
+              { label: "Cart", active: false, completed: true },
+              { label: "Information", active: true },
+              { label: "Finish", active: false },
+            ].map((step, idx) => (
               <div
-                style={{
-                  width: "70px",
-                  height: "70px",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  backgroundColor: "#f3f4f6",
-                }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80"
-                  alt="Product"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-              <div style={{ fontSize: "12px", color: "#4b5563" }}>
-                <div
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    marginBottom: "4px",
-                  }}
-                >
-                  Ellomart – Electronics and Digital Store Elementor WooCommerce
-                  Responsive Theme
-                </div>
-                <div>
-                  License type{" "}
-                  <span style={{ fontWeight: 600 }}>Personal license</span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: "13px",
-                marginBottom: "8px",
-              }}
-            >
-              <span>Base product</span>
-              <span style={{ fontWeight: 700 }}>${basePrice}</span>
-            </div>
-
-            {/* Services */}
-            {items.map((item) => (
-              <div
-                key={item.id}
+                key={step.label}
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
                   alignItems: "center",
-                  fontSize: "12px",
-                  padding: "4px 0",
+                  gap: "6px",
                 }}
               >
-                <span>✔ {item.title}</span>
-                <span style={{ fontWeight: 700, color: "#f97316" }}>
-                  ${item.price}
+                <div
+                  style={{
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "999px",
+                    border: step.active
+                      ? "4px solid #8b5cf6"
+                      : "1px solid #d1d5db",
+                    backgroundColor: step.completed ? "#8b5cf6" : "#ffffff",
+                  }}
+                />
+                <span
+                  style={{
+                    fontWeight: step.active ? 600 : 400,
+                    color: step.active ? "#111827" : "#9ca3af",
+                  }}
+                >
+                  {step.label}
                 </span>
               </div>
             ))}
+          </div>
 
-            <button
-              style={{
-                marginTop: "10px",
-                border: "none",
-                background: "none",
-                color: "#2563eb",
-                fontSize: "12px",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            >
-              Have a promocode?
-            </button>
+          {/* Two-column layout */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)",
+              gap: "26px",
+              alignItems: "flex-start",
+            }}
+          >
+            {/* LEFT FORM */}
+            <div>
+              {/* Customer information */}
+              <h3
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "6px",
+                }}
+              >
+                Customer information
+              </h3>
+              <input
+                type="email"
+                placeholder="Email address *"
+                style={{
+                  width: "100%",
+                  height: "38px",
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  fontSize: "12px",
+                  padding: "0 10px",
+                  marginBottom: "16px",
+                  outline: "none",
+                }}
+              />
 
-            <div
-              style={{
-                marginTop: "10px",
-                fontSize: "12px",
-                color: "#6b7280",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <span>
-                Handling fee <span style={{ fontSize: "11px" }}>ⓘ</span>
-              </span>
-              <span>${handlingFee}</span>
+              {/* Billing details */}
+              <h3
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "6px",
+                }}
+              >
+                Billing details
+              </h3>
+
+              {/* First / Last */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "10px",
+                  marginBottom: "10px",
+                }}
+              >
+                <input
+                  placeholder="First name *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  placeholder="Last name *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+              </div>
+
+              {/* Company */}
+              <input
+                placeholder="Company name"
+                style={{
+                  width: "100%",
+                  height: "38px",
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  fontSize: "12px",
+                  padding: "0 10px",
+                  marginBottom: "10px",
+                  outline: "none",
+                }}
+              />
+
+              {/* Country */}
+              <input
+                placeholder="Country / Region *"
+                defaultValue="Bangladesh"
+                style={{
+                  width: "100%",
+                  height: "38px",
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  fontSize: "12px",
+                  padding: "0 10px",
+                  marginBottom: "10px",
+                  outline: "none",
+                }}
+              />
+
+              {/* Address line 1 + 2 */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "10px",
+                  marginBottom: "10px",
+                }}
+              >
+                <input
+                  placeholder="House number and street name *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  placeholder="Apartment, suite, unit, etc. (optional)"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+              </div>
+
+              {/* City / District / Postal */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gap: "10px",
+                  marginBottom: "10px",
+                }}
+              >
+                <input
+                  placeholder="Town / City *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  placeholder="District *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  placeholder="Postcode / ZIP *"
+                  style={{
+                    height: "38px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+              </div>
+
+              {/* Phone */}
+              <input
+                placeholder="Phone *"
+                style={{
+                  width: "100%",
+                  height: "38px",
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  fontSize: "12px",
+                  padding: "0 10px",
+                  marginBottom: "12px",
+                  outline: "none",
+                }}
+              />
+
+              {/* Ship to different address */}
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "12px",
+                  color: "#4b5563",
+                  marginBottom: "8px",
+                }}
+              >
+                <input type="checkbox" /> Ship to a different address?
+              </label>
+
+              <textarea
+                placeholder="Notes about your order, e.g. special notes for delivery."
+                rows={3}
+                style={{
+                  width: "100%",
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  fontSize: "12px",
+                  padding: "8px 10px",
+                  resize: "vertical",
+                  marginBottom: "14px",
+                  outline: "none",
+                }}
+              />
+
+              {/* Shipping */}
+              <h3
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "4px",
+                }}
+              >
+                Shipping
+              </h3>
+              <div
+                style={{
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  padding: "8px 10px",
+                  fontSize: "12px",
+                  marginBottom: "12px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>Flat rate</span>
+                <span>$10.00</span>
+              </div>
+
+              {/* Payment */}
+              <h3
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "4px",
+                }}
+              >
+                Payment
+              </h3>
+              <div
+                style={{
+                  borderRadius: "6px",
+                  border: "1px solid #e5e7eb",
+                  padding: "8px 10px",
+                  fontSize: "12px",
+                  marginBottom: "6px",
+                }}
+              >
+                Cash on delivery
+              </div>
+              <label
+                style={{
+                  display: "block",
+                  fontSize: "11px",
+                  color: "#6b7280",
+                  marginBottom: "18px",
+                }}
+              >
+                <input type="checkbox" style={{ marginRight: "6px" }} />
+                Pay with cash upon delivery.
+              </label>
+
+              {/* Privacy note */}
+              <p
+                style={{
+                  fontSize: "10px",
+                  color: "#9ca3af",
+                  lineHeight: 1.6,
+                  marginBottom: "12px",
+                }}
+              >
+                Your personal data will be used to process your order, support
+                your experience throughout this website, and for other purposes
+                described in our privacy policy.
+              </p>
+
+              {/* Place order button */}
+              <button
+                style={{
+                  width: "100%",
+                  height: "42px",
+                  borderRadius: "6px",
+                  border: "none",
+                  backgroundColor: "#8b5cf6",
+                  color: "#ffffff",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                }}
+              >
+                Place Order ${total.toFixed(2)}
+              </button>
             </div>
 
+            {/* RIGHT: ORDER SUMMARY */}
             <div
               style={{
-                marginTop: "8px",
-                paddingTop: "8px",
-                borderTop: "1px solid #e5e7eb",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                fontSize: "14px",
-                fontWeight: 700,
+                borderRadius: "10px",
+                border: "1px solid #e5e7eb",
+                padding: "14px 16px 16px",
+                backgroundColor: "#fafafa",
               }}
             >
-              <span>Total:</span>
-              <span>${total}</span>
+              <h3
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "10px",
+                }}
+              >
+                Your order
+              </h3>
+
+              {/* Product row */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "56px 1fr auto",
+                  gap: "10px",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "52px",
+                    height: "52px",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    backgroundColor: "#e5e7eb",
+                  }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=200&q=80"
+                    alt="Product"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div style={{ fontSize: "12px", color: "#4b5563" }}>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      marginBottom: "3px",
+                    }}
+                  >
+                    SEO Foundation E‑book
+                  </div>
+                  <div style={{ fontSize: "11px", color: "#9ca3af" }}>× 1</div>
+                </div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    color: "#111827",
+                  }}
+                >
+                  ${subtotal.toFixed(2)}
+                </div>
+              </div>
+
+              <hr style={{ borderColor: "#e5e7eb", margin: "10px 0" }} />
+
+              {/* Subtotal */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "12px",
+                  color: "#6b7280",
+                  marginBottom: "6px",
+                }}
+              >
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
+
+              {/* Total */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  marginBottom: "14px",
+                }}
+              >
+                <span>Total</span>
+                <span>${total.toFixed(2)}</span>
+              </div>
+
+              {/* Coupon input */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: "6px",
+                  marginTop: "4px",
+                }}
+              >
+                <input
+                  placeholder="Coupon code"
+                  style={{
+                    flex: 1,
+                    height: "34px",
+                    borderRadius: "6px",
+                    border: "1px solid #e5e7eb",
+                    fontSize: "12px",
+                    padding: "0 10px",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  style={{
+                    width: "80px",
+                    height: "34px",
+                    borderRadius: "6px",
+                    border: "none",
+                    backgroundColor: "#8b5cf6",
+                    color: "#ffffff",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
   );

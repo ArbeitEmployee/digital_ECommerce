@@ -1,6 +1,8 @@
+// components/GoToCard.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const GoToCart = ({ onClose }) => {
+const GoToCart = () => {
   const basePrice = 67;
   const items = [
     {
@@ -19,6 +21,8 @@ const GoToCart = ({ onClose }) => {
   const handlingFee = 2;
   const total =
     basePrice + handlingFee + items.reduce((sum, item) => sum + item.price, 0);
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -70,7 +74,7 @@ const GoToCart = ({ onClose }) => {
             </h2>
           </div>
           <button
-            onClick={onClose}
+            onClick={() => navigate(-1)}
             style={{
               width: "26px",
               height: "26px",
@@ -263,6 +267,7 @@ const GoToCart = ({ onClose }) => {
               fontWeight: 600,
               cursor: "pointer",
             }}
+            onClick={() => navigate("/checkout")}
           >
             Checkout Now
           </button>

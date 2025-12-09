@@ -1,412 +1,461 @@
-import React, { useState } from "react";
+// AddToCart.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const services = [
+const cartItems = [
   {
     id: 1,
-    title: "Captcha Integration",
-    provider: "TemplateMonster Web Studio",
-    price: 59,
-    oldPrice: 74,
+    title: "Gradient Graphic T‑shirt",
+    size: "Large",
+    color: "White",
+    price: 145,
+    image:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&q=80",
+    qty: 1,
   },
   {
     id: 2,
-    title: "Installation & Setup",
-    provider: "TemplateMonster Web Studio",
-    price: 49,
-    oldPrice: 59,
+    title: "Checkered Shirt",
+    size: "Medium",
+    color: "Red",
+    price: 180,
+    image:
+      "https://images.unsplash.com/photo-1521572163474-4f3c9c1e3fdc?auto=format&fit=crop&w=300&q=80",
+    qty: 1,
   },
   {
     id: 3,
-    title: "On‑Page SEO Optimization",
-    provider: "Web Studio SEO Team",
-    price: 299,
-    oldPrice: 329,
-  },
-  {
-    id: 4,
-    title: "Unique Logo Creation",
-    provider: "TemplateMonster Web Studio",
-    price: 249,
-  },
-  {
-    id: 5,
-    title: "Website Maintenance Pack",
-    provider: "TemplateMonster Web Studio",
-    price: 399,
-  },
-  {
-    id: 6,
-    title: "Hire a Developer (10 hours)",
-    provider: "TemplateMonster Web Studio",
-    price: 249,
-    oldPrice: 299,
-  },
-  {
-    id: 7,
-    title: "Installation & Customization Package",
-    provider: "TemplateMonster Web Studio",
-    price: 259,
-    oldPrice: 369,
-    recommended: true,
+    title: "Skinny Fit Jeans",
+    size: "Large",
+    color: "Blue",
+    price: 240,
+    image:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&q=80",
+    qty: 1,
   },
 ];
 
-const AddToCart = ({ onClose }) => {
-  const [selectedIds, setSelectedIds] = useState([2]);
+const AddToCart = () => {
+  const navigate = useNavigate();
 
-  const toggleService = (id) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
-
-  const basePrice = 67;
-  const selectedTotal = services
-    .filter((s) => selectedIds.includes(s.id))
-    .reduce((sum, s) => sum + s.price, 0);
-  const subtotal = basePrice + selectedTotal;
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
+  const discount = Math.round(subtotal * 0.2); // 20%
+  const deliveryFee = 15;
+  const total = subtotal - discount + deliveryFee;
 
   return (
-    <div
+    <section
       style={{
-        position: "fixed",
-        inset: 0,
-        backgroundColor: "rgba(0,0,0,0.6)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        paddingTop: "40px",
-        zIndex: 50,
-        fontFamily: "Roboto, sans-serif",
+        backgroundColor: "#f5f0e9",
+        minHeight: "100vh",
+        fontFamily: "Roboto, system-ui, sans-serif",
+        paddingBottom: "40px",
       }}
     >
+      {/* Page content */}
       <div
         style={{
-          width: "1100px",
-          maxHeight: "85vh",
-          backgroundColor: "#ffffff",
-          borderRadius: "10px",
-          overflow: "hidden",
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)",
+          maxWidth: "1100px",
+          margin: "60px auto 0",
+          padding: "0 20px",
+          boxSizing: "border-box",
         }}
       >
-        {/* LEFT - services list */}
+        {/* Breadcrumb */}
         <div
           style={{
-            padding: "20px 18px 18px",
-            borderRight: "1px solid #e5e7eb",
-            overflowY: "auto",
+            fontSize: "11px",
+            color: "#9ca3af",
+            marginBottom: "8px",
           }}
         >
-          <h2
-            style={{
-              fontSize: "18px",
-              fontWeight: 700,
-              marginBottom: "16px",
-            }}
-          >
-            Recommended Customization Services for This Product
-          </h2>
-
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-          >
-            {services.map((service) => {
-              const selected = selectedIds.includes(service.id);
-              const rowBorderColor = service.recommended
-                ? "#22c55e"
-                : "#e5e7eb";
-
-              return (
-                <div
-                  key={service.id}
-                  style={{
-                    borderRadius: "8px",
-                    border: `1px solid ${rowBorderColor}`,
-                    padding: "12px 14px",
-                    display: "grid",
-                    gridTemplateColumns: "60px minmax(0, 1fr) auto auto",
-                    alignItems: "center",
-                    columnGap: "14px",
-                    backgroundColor: "#ffffff",
-                  }}
-                >
-                  {/* icon placeholder */}
-                  <div
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "10px",
-                      backgroundColor: "#f3f4f6",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "22px",
-                    }}
-                  >
-                    🛠
-                  </div>
-
-                  {/* text */}
-                  <div>
-                    <div
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: 600,
-                        marginBottom: "3px",
-                      }}
-                    >
-                      {service.title}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#6b7280",
-                      }}
-                    >
-                      Provided by {service.provider} ·{" "}
-                      <span style={{ color: "#2563eb", cursor: "pointer" }}>
-                        Details
-                      </span>
-                    </div>
-                    {service.recommended && (
-                      <span
-                        style={{
-                          display: "inline-block",
-                          marginTop: "6px",
-                          fontSize: "11px",
-                          fontWeight: 600,
-                          padding: "2px 8px",
-                          borderRadius: "999px",
-                          backgroundColor: "#22c55e",
-                          color: "#ffffff",
-                        }}
-                      >
-                        Recommended
-                      </span>
-                    )}
-                  </div>
-
-                  {/* price */}
-                  <div
-                    style={{
-                      textAlign: "right",
-                      fontSize: "13px",
-                      marginRight: "6px",
-                    }}
-                  >
-                    {service.oldPrice && (
-                      <div
-                        style={{
-                          fontSize: "12px",
-                          color: "#9ca3af",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        ${service.oldPrice}
-                      </div>
-                    )}
-                    <div
-                      style={{
-                        fontWeight: 700,
-                        color: "#f97316",
-                      }}
-                    >
-                      ${service.price}
-                    </div>
-                  </div>
-
-                  {/* add/tick button */}
-                  <button
-                    onClick={() => toggleService(service.id)}
-                    style={{
-                      width: "34px",
-                      height: "34px",
-                      borderRadius: "6px",
-                      border: "none",
-                      backgroundColor: selected ? "#22c55e" : "#22c55e",
-                      color: "#ffffff",
-                      cursor: "pointer",
-                      fontSize: "18px",
-                    }}
-                  >
-                    {selected ? "✓" : "+"}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+          Home &gt; Cart
         </div>
 
-        {/* RIGHT - cart summary */}
-        <div
+        {/* Title */}
+        <h1
           style={{
-            padding: "18px 18px 20px",
-            backgroundColor: "#f9fafb",
-            display: "flex",
-            flexDirection: "column",
+            fontSize: "26px",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            fontWeight: 600,
+            marginBottom: "24px",
+            color: "#111827",
           }}
         >
-          {/* header row with close */}
+          YOUR CART
+        </h1>
+
+        {/* Two columns */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 2fr) minmax(0, 1.25fr)",
+            gap: "24px",
+            alignItems: "flex-start",
+          }}
+        >
+          {/* Left: cart list */}
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "14px",
+              backgroundColor: "#ffffff",
+              borderRadius: "14px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+              padding: "18px 18px 6px",
+            }}
+          >
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "88px 1fr auto",
+                  gap: "14px",
+                  padding: "10px 0",
+                  borderBottom: "1px solid #f3f4f6",
+                  alignItems: "center",
+                }}
+              >
+                {/* image */}
+                <div
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "12px",
+                    overflow: "hidden",
+                    backgroundColor: "#f3f4f6",
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+
+                {/* text */}
+                <div>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      marginBottom: "4px",
+                      color: "#111827",
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      color: "#6b7280",
+                      marginBottom: "2px",
+                    }}
+                  >
+                    Size: {item.size}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      color: "#6b7280",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Color: {item.color}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#111827",
+                    }}
+                  >
+                    ${item.price}
+                  </div>
+                </div>
+
+                {/* qty + delete */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    gap: "10px",
+                  }}
+                >
+                  {/* delete icon */}
+                  <button
+                    style={{
+                      border: "none",
+                      background: "none",
+                      color: "#ef4444",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                    }}
+                    aria-label="Remove item"
+                  >
+                    🗑
+                  </button>
+
+                  {/* qty control */}
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      borderRadius: "999px",
+                      backgroundColor: "#f3f4f6",
+                      padding: "4px 8px",
+                      gap: "8px",
+                    }}
+                  >
+                    <button
+                      style={{
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "999px",
+                        border: "none",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        fontSize: "14px",
+                      }}
+                    >
+                      −
+                    </button>
+                    <span
+                      style={{
+                        fontSize: "13px",
+                        minWidth: "18px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {item.qty}
+                    </span>
+                    <button
+                      style={{
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "999px",
+                        border: "none",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        fontSize: "14px",
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right: order summary */}
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              borderRadius: "14px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+              padding: "18px 20px 20px",
             }}
           >
             <h3
               style={{
-                fontSize: "18px",
-                fontWeight: 700,
-                margin: 0,
+                fontSize: "16px",
+                fontWeight: 600,
+                marginBottom: "14px",
+                color: "#111827",
               }}
             >
-              You added to cart
+              Order Summary
             </h3>
-            <button
-              onClick={onClose}
-              style={{
-                width: "28px",
-                height: "28px",
-                borderRadius: "999px",
-                border: "none",
-                backgroundColor: "#e5e7eb",
-                cursor: "pointer",
-                fontSize: "18px",
-              }}
-            >
-              ×
-            </button>
-          </div>
 
-          {/* product info */}
-          <div
-            style={{
-              display: "flex",
-              gap: "10px",
-              marginBottom: "14px",
-            }}
-          >
             <div
               style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "8px",
-                overflow: "hidden",
-                backgroundColor: "#ffffff",
+                fontSize: "13px",
+                color: "#4b5563",
+                marginBottom: "6px",
+                display: "flex",
+                justifyContent: "space-between",
               }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80"
-                alt="Product"
+              <span>Subtotal</span>
+              <span>${subtotal}</span>
+            </div>
+
+            <div
+              style={{
+                fontSize: "13px",
+                color: "#b91c1c",
+                marginBottom: "6px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <span>Discount (-20%)</span>
+              <span>- ${discount}</span>
+            </div>
+
+            <div
+              style={{
+                fontSize: "13px",
+                color: "#4b5563",
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <span>Delivery Fee</span>
+              <span>${deliveryFee}</span>
+            </div>
+
+            <hr style={{ borderColor: "#f3f4f6", margin: "10px 0" }} />
+
+            <div
+              style={{
+                fontSize: "14px",
+                fontWeight: 600,
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "16px",
+              }}
+            >
+              <span>Total</span>
+              <span>${total}</span>
+            </div>
+
+            {/* promo code */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "999px",
+                backgroundColor: "#f3f4f6",
+                padding: "4px 4px 4px 12px",
+                marginBottom: "14px",
+              }}
+            >
+              <input
+                placeholder="Add promo code"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  background: "transparent",
+                  fontSize: "12px",
                 }}
               />
-            </div>
-            <div style={{ fontSize: "12px", color: "#4b5563" }}>
-              <div
+              <button
                 style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  marginBottom: "4px",
+                  borderRadius: "999px",
+                  border: "none",
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  fontSize: "12px",
+                  padding: "8px 18px",
+                  cursor: "pointer",
                 }}
               >
-                Ellomart – Electronics and Digital Store Elementor WooCommerce
-                Theme
-              </div>
-              <div style={{ marginBottom: "4px" }}>
-                <span style={{ fontWeight: 600 }}>License type</span>: Personal
-                license
-              </div>
-              <div style={{ fontWeight: 700 }}>${basePrice}</div>
+                Apply
+              </button>
             </div>
-          </div>
 
-          {/* selected services summary */}
-          <div
-            style={{
-              borderTop: "1px solid #e5e7eb",
-              marginTop: "10px",
-              paddingTop: "10px",
-              flexGrow: 1,
-            }}
-          >
-            {services
-              .filter((s) => selectedIds.includes(s.id))
-              .map((s) => (
-                <div
-                  key={s.id}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    fontSize: "12px",
-                    padding: "6px 0",
-                  }}
-                >
-                  <span>{s.title}</span>
-                  <span style={{ fontWeight: 600, color: "#f97316" }}>
-                    ${s.price}
-                  </span>
-                </div>
-              ))}
+            {/* checkout button */}
+            <button
+              style={{
+                width: "100%",
+                borderRadius: "999px",
+                border: "none",
+                backgroundColor: "#000000",
+                color: "#ffffff",
+                fontSize: "13px",
+                fontWeight: 600,
+                padding: "10px 0",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("/checkout")}
+            >
+              Go to Checkout →
+            </button>
           </div>
-
-          {/* subtotal */}
-          <div
-            style={{
-              padding: "10px 0",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "14px",
-              fontWeight: 700,
-            }}
-          >
-            <span>Subtotal:</span>
-            <span>${subtotal}</span>
-          </div>
-
-          {/* buttons */}
-          <button
-            style={{
-              width: "100%",
-              height: "40px",
-              borderRadius: "4px",
-              border: "none",
-              backgroundColor: "#f97316",
-              color: "#ffffff",
-              fontSize: "13px",
-              fontWeight: 600,
-              cursor: "pointer",
-              marginBottom: "10px",
-            }}
-          >
-            Go To Cart
-          </button>
-          <button
-            style={{
-              width: "100%",
-              height: "40px",
-              borderRadius: "4px",
-              border: "1px solid #2563eb",
-              backgroundColor: "#ffffff",
-              color: "#2563eb",
-              fontSize: "13px",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Continue Shopping
-          </button>
         </div>
       </div>
-    </div>
+
+      {/* Newsletter strip */}
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "40px auto 0",
+          padding: "0 20px",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#004b3b",
+            borderRadius: "12px",
+            padding: "26px 24px",
+            color: "#ffffff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "24px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "20px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}
+          >
+            Stay connect about our latest offers
+          </div>
+          <div
+            style={{
+              display: "flex",
+              backgroundColor: "#ffffff",
+              borderRadius: "999px",
+              overflow: "hidden",
+              maxWidth: "360px",
+              flex: 1,
+            }}
+          >
+            <input
+              placeholder="Enter your email address"
+              style={{
+                flex: 1,
+                border: "none",
+                padding: "0 14px",
+                fontSize: "12px",
+                outline: "none",
+              }}
+            />
+            <button
+              style={{
+                border: "none",
+                backgroundColor: "#000000",
+                color: "#ffffff",
+                fontSize: "12px",
+                fontWeight: 600,
+                padding: "10px 18px",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Subscribe to Newsletter
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

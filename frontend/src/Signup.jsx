@@ -1,6 +1,10 @@
+// Signup.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Signup = ({ onGoToLogin }) => {
+const Signup = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       style={{
@@ -18,21 +22,9 @@ const Signup = ({ onGoToLogin }) => {
           boxSizing: "border-box",
         }}
       >
-        {/* Heading */}
-        <h1
-          style={{
-            fontSize: "28px",
-            fontWeight: 700,
-            color: "#111827",
-            marginBottom: "20px",
-          }}
-        >
-          Register
-        </h1>
-
-        {/* Card */}
         <div
           style={{
+            position: "relative",
             backgroundColor: "#ffffff",
             borderRadius: "8px",
             boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
@@ -40,6 +32,39 @@ const Signup = ({ onGoToLogin }) => {
             padding: "22px 22px 24px",
           }}
         >
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              width: "24px",
+              height: "24px",
+              borderRadius: "999px",
+              border: "none",
+              backgroundColor: "#e5e7eb",
+              cursor: "pointer",
+              fontSize: "16px",
+              lineHeight: "24px",
+            }}
+          >
+            ×
+          </button>
+
+          <h1
+            style={{
+              fontSize: "28px",
+              fontWeight: 700,
+              color: "#111827",
+              marginBottom: "20px",
+              marginTop: "4px",
+            }}
+          >
+            Register
+          </h1>
+
           {/* Username */}
           <div style={{ marginBottom: "14px" }}>
             <label
@@ -92,7 +117,7 @@ const Signup = ({ onGoToLogin }) => {
             />
           </div>
 
-          {/* Password with eye button placeholder */}
+          {/* Password with eye placeholder */}
           <div style={{ marginBottom: "12px" }}>
             <label
               style={{
@@ -194,7 +219,7 @@ const Signup = ({ onGoToLogin }) => {
             Already have an account?{" "}
             <button
               type="button"
-              onClick={onGoToLogin}
+              onClick={() => navigate("/login")}
               style={{
                 border: "none",
                 background: "none",

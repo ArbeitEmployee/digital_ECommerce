@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
@@ -79,6 +81,17 @@ const banners = [
 ];
 
 const PopularCategory = () => {
+  const navigate = useNavigate();
+
+  // go directly to product details page (you must have a route like /product/:id)
+  const goToCategory = (id) => {
+    navigate(`/product/${id}`);
+  };
+
+  const goToBannerProducts = (id) => {
+    navigate("/products");
+  };
+
   return (
     <section
       style={{
@@ -144,6 +157,7 @@ const PopularCategory = () => {
                 cursor: "pointer",
                 border: "1px solid #f1f5f9",
               }}
+              onClick={() => goToCategory(cat.id)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-8px)";
                 e.currentTarget.style.boxShadow =
@@ -258,7 +272,9 @@ const PopularCategory = () => {
                 boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
                 transition: "all 0.3s ease",
                 position: "relative",
+                cursor: "pointer",
               }}
+              onClick={() => goToBannerProducts(b.id)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-5px)";
                 e.currentTarget.style.boxShadow =
@@ -325,6 +341,10 @@ const PopularCategory = () => {
                   onMouseLeave={(e) => {
                     e.target.style.backgroundColor = "transparent";
                     e.target.style.transform = "scale(1)";
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToBannerProducts(b.id);
                   }}
                 >
                   {b.buttonText}

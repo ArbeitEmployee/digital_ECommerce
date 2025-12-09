@@ -1,12 +1,12 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
     id: 1,
     title: "New Featured MacBook Pro With Apple M1 Pro Chip",
     price: "$980 – $1,280",
-    buttonText: "SELECT OPTIONS",
     image:
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
     rating: 5,
@@ -15,7 +15,6 @@ const products = [
     id: 2,
     title: "Apple Watch SE 44mm GPS+Cellular Gold",
     price: "$35 – $45",
-    buttonText: "SELECT OPTIONS",
     image:
       "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=800&q=80",
     rating: 5,
@@ -24,7 +23,6 @@ const products = [
     id: 3,
     title: "APPLE New AirPods Max Bluetooth Headset",
     price: "$23",
-    buttonText: "SELECT OPTIONS",
     image:
       "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=80",
     rating: 5,
@@ -34,7 +32,6 @@ const products = [
     title: "LG 8 kg Fully Automatic Top Load Washing Machine",
     price: "$230",
     oldPrice: "$240",
-    buttonText: "ADD TO CART",
     image:
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
     rating: 5,
@@ -45,7 +42,6 @@ const products = [
     id: 5,
     title: "MOMENTUM 2K Indoor Security Camera for Home",
     price: "$190",
-    buttonText: "ADD TO CART",
     image:
       "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
     rating: 5,
@@ -69,11 +65,17 @@ const bottomBanners = [
     titleMain: "Wireless Gaming Controller",
     buttonText: "SHOP NOW",
     image:
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80 ",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
 const FeaturedProducts = () => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <section
       style={{
@@ -276,7 +278,7 @@ const FeaturedProducts = () => {
                 )}
               </div>
 
-              {/* button */}
+              {/* button → VIEW DETAILS */}
               <button
                 style={{
                   marginTop: "auto",
@@ -292,8 +294,9 @@ const FeaturedProducts = () => {
                   cursor: "pointer",
                   textTransform: "uppercase",
                 }}
+                onClick={() => handleViewDetails(p.id)}
               >
-                {p.buttonText}
+                VIEW DETAILS
               </button>
             </div>
           ))}

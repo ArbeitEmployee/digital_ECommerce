@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const images = [
   "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=800&q=80",
@@ -44,6 +45,8 @@ const ProductDetails = () => {
   const [selectedRam, setSelectedRam] = useState(rams[1]);
   const [selectedStorage, setSelectedStorage] = useState(storages[0]);
   const [qty, setQty] = useState(1);
+
+  const navigate = useNavigate();
 
   const increaseQty = () => setQty((q) => q + 1);
   const decreaseQty = () => setQty((q) => (q > 1 ? q - 1 : 1));
@@ -464,6 +467,7 @@ const ProductDetails = () => {
                 fontWeight: 600,
                 cursor: "pointer",
               }}
+              onClick={() => navigate("/added-to-cart")}
             >
               ADD TO CART
             </button>
@@ -483,11 +487,12 @@ const ProductDetails = () => {
               cursor: "pointer",
               marginBottom: "12px",
             }}
+            onClick={() => navigate("/checkout")}
           >
             BUY NOW
           </button>
 
-          {/* Icons row (compare / wishlist / etc.) */}
+          {/* Icons row */}
           <div
             style={{
               display: "flex",
@@ -533,7 +538,6 @@ const ProductDetails = () => {
               Guaranteed Safe And Secure Checkout
             </div>
             <div style={{ display: "flex", gap: "8px", fontSize: "20px" }}>
-              {/* Replace with real card icons or images */}
               <span>VISA</span>
               <span>MC</span>
               <span>AMEX</span>

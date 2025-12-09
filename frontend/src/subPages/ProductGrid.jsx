@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
 const filters = {
@@ -62,10 +63,11 @@ const products = [
     rating: 5,
     buttonText: "SELECT OPTIONS",
   },
-  // add more items as needed...
 ];
 
 const ProductGrid = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       style={{
@@ -310,7 +312,6 @@ const ProductGrid = () => {
 
         {/* RIGHT PRODUCT GRID */}
         <main>
-          {/* Top bar: showing / sort (static) */}
           <div
             style={{
               display: "flex",
@@ -325,7 +326,6 @@ const ProductGrid = () => {
             <span>Default sorting</span>
           </div>
 
-          {/* Grid */}
           <div
             style={{
               display: "grid",
@@ -346,7 +346,6 @@ const ProductGrid = () => {
                   minHeight: "260px",
                 }}
               >
-                {/* Image */}
                 <div
                   style={{
                     width: "100%",
@@ -355,7 +354,9 @@ const ProductGrid = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     marginBottom: "10px",
+                    cursor: "pointer",
                   }}
+                  onClick={() => navigate(`/product/${p.id}`)}
                 >
                   <img
                     src={p.image}
@@ -368,7 +369,6 @@ const ProductGrid = () => {
                   />
                 </div>
 
-                {/* Title */}
                 <div
                   style={{
                     fontSize: "12px",
@@ -376,12 +376,13 @@ const ProductGrid = () => {
                     lineHeight: 1.4,
                     marginBottom: "6px",
                     minHeight: "36px",
+                    cursor: "pointer",
                   }}
+                  onClick={() => navigate(`/product/${p.id}`)}
                 >
                   {p.title}
                 </div>
 
-                {/* Rating */}
                 <div
                   style={{
                     display: "flex",
@@ -400,7 +401,6 @@ const ProductGrid = () => {
                   ))}
                 </div>
 
-                {/* Price */}
                 <div
                   style={{
                     fontSize: "13px",
@@ -412,7 +412,6 @@ const ProductGrid = () => {
                   {p.price}
                 </div>
 
-                {/* Button */}
                 <button
                   style={{
                     marginTop: "auto",
@@ -428,6 +427,11 @@ const ProductGrid = () => {
                     cursor: "pointer",
                     textTransform: "uppercase",
                   }}
+                  onClick={() =>
+                    p.buttonText === "ADD TO CART"
+                      ? navigate("/added-to-cart")
+                      : navigate(`/product/${p.id}`)
+                  }
                 >
                   {p.buttonText}
                 </button>

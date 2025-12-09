@@ -1,6 +1,10 @@
+// ForgetPassword.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       style={{
@@ -33,6 +37,7 @@ const ForgetPassword = () => {
         {/* Card */}
         <div
           style={{
+            position: "relative",
             backgroundColor: "#ffffff",
             borderRadius: "8px",
             boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
@@ -40,7 +45,28 @@ const ForgetPassword = () => {
             padding: "22px 22px 26px",
           }}
         >
-          <div style={{ marginBottom: "14px" }}>
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              width: "24px",
+              height: "24px",
+              borderRadius: "999px",
+              border: "none",
+              backgroundColor: "#e5e7eb",
+              cursor: "pointer",
+              fontSize: "16px",
+              lineHeight: "24px",
+            }}
+          >
+            ×
+          </button>
+
+          <div style={{ marginBottom: "14px", marginTop: "8px" }}>
             <label
               style={{
                 display: "block",
