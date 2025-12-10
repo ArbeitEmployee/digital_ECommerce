@@ -65,7 +65,7 @@ const bottomBanners = [
     titleMain: "Wireless Gaming Controller",
     buttonText: "SHOP NOW",
     image:
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -76,6 +76,14 @@ const FeaturedProducts = () => {
     navigate(`/product/${id}`);
   };
 
+  const handleBuyNow = () => {
+    navigate("/added-to-cart");
+  };
+
+  const handleBannerShopNow = () => {
+    navigate("/checkout");
+  };
+
   return (
     <section
       style={{
@@ -84,33 +92,36 @@ const FeaturedProducts = () => {
         fontFamily: "Roboto, sans-serif",
       }}
     >
+      {/* CHANGED: Match other components' container width and padding */}
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Changed from "1200px"
           margin: "0 auto",
-          padding: "0 15px",
+          padding: "0 30px", // Changed: Equal padding for grid alignment
           boxSizing: "border-box",
         }}
       >
-        {/* Heading */}
-        <h2
-          style={{
-            fontSize: "22px",
-            fontWeight: 700,
-            color: "#111827",
-            marginBottom: "20px",
-          }}
-        >
-          Featured Products
-        </h2>
+        {/* Heading with right padding for asymmetric effect */}
+        <div style={{ paddingRight: "30px", marginBottom: "20px" }}>
+          <h2
+            style={{
+              fontSize: "22px",
+              fontWeight: 700,
+              color: "#111827",
+            }}
+          >
+            Featured Products
+          </h2>
+        </div>
 
-        {/* Product cards row */}
+        {/* Product cards row - Adjusted for new container width */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-            gap: "18px",
+            gap: "15px", // Reduced gap slightly
             marginBottom: "30px",
+            paddingRight: "30px", // Added for asymmetric effect
           }}
         >
           {products.map((p) => (
@@ -125,6 +136,7 @@ const FeaturedProducts = () => {
                 display: "flex",
                 flexDirection: "column",
                 minHeight: "260px",
+                minWidth: "0", // Added: Prevent overflow
               }}
             >
               {/* discount badge */}
@@ -146,7 +158,7 @@ const FeaturedProducts = () => {
                 </div>
               )}
 
-              {/* image */}
+              {/* image – click goes to product details */}
               <div
                 style={{
                   width: "100%",
@@ -155,7 +167,9 @@ const FeaturedProducts = () => {
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: "12px",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleViewDetails(p.id)}
               >
                 <img
                   src={p.image}
@@ -215,7 +229,7 @@ const FeaturedProducts = () => {
                 </div>
               )}
 
-              {/* title */}
+              {/* title – click goes to product details */}
               <div
                 style={{
                   fontSize: "12px",
@@ -223,7 +237,9 @@ const FeaturedProducts = () => {
                   lineHeight: 1.4,
                   marginBottom: "6px",
                   minHeight: "38px",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleViewDetails(p.id)}
               >
                 {p.title}
               </div>
@@ -278,7 +294,7 @@ const FeaturedProducts = () => {
                 )}
               </div>
 
-              {/* button → VIEW DETAILS */}
+              {/* button → BUY NOW → Add to Cart */}
               <button
                 style={{
                   marginTop: "auto",
@@ -294,20 +310,21 @@ const FeaturedProducts = () => {
                   cursor: "pointer",
                   textTransform: "uppercase",
                 }}
-                onClick={() => handleViewDetails(p.id)}
+                onClick={handleBuyNow}
               >
-                VIEW DETAILS
+                BUY NOW
               </button>
             </div>
           ))}
         </div>
 
-        {/* bottom banners */}
+        {/* bottom banners - Adjusted for new container */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-            gap: "18px",
+            gap: "15px", // Reduced gap slightly
+            paddingRight: "30px", // Added for asymmetric effect
           }}
         >
           {bottomBanners.map((b) => (
@@ -320,8 +337,9 @@ const FeaturedProducts = () => {
                 color: "#ffffff",
                 display: "flex",
                 alignItems: "center",
-                padding: "24px 26px",
-                minHeight: "170px",
+                padding: "20px 24px", // Slightly reduced padding
+                minHeight: "160px", // Slightly reduced height
+                minWidth: "0", // Added: Prevent overflow
               }}
             >
               <div style={{ flex: 1 }}>
@@ -338,10 +356,10 @@ const FeaturedProducts = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: "22px",
+                    fontSize: "20px", // Slightly smaller
                     fontWeight: 700,
                     lineHeight: 1.3,
-                    marginBottom: "16px",
+                    marginBottom: "14px",
                   }}
                 >
                   {b.titleMain}
@@ -357,6 +375,7 @@ const FeaturedProducts = () => {
                     fontWeight: 600,
                     cursor: "pointer",
                   }}
+                  onClick={handleBannerShopNow}
                 >
                   {b.buttonText}
                 </button>

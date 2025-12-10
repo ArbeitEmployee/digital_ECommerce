@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar, FaFire } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
@@ -23,18 +24,12 @@ const products = [
     price: "$799",
     originalPrice: "$899",
     discountBadge: "11% OFF",
-    buttonText: "ADD TO CART",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2071&auto=format&fit=crop",
     rating: 5,
     reviews: "189",
     category: "Appliances",
-    countdown: {
-      days: "02",
-      hours: "18",
-      minutes: "45",
-      seconds: "30",
-    },
   },
   {
     id: 3,
@@ -43,7 +38,7 @@ const products = [
     price: "$299",
     originalPrice: "$349",
     discountBadge: "14% OFF",
-    buttonText: "VIEW DEAL",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80",
     rating: 5,
@@ -53,6 +48,17 @@ const products = [
 ];
 
 const BestSellingProducts = () => {
+  const navigate = useNavigate();
+  const handleBuyNow = () => {
+    navigate("/added-to-cart");
+  };
+
+  const handleShopNow = () => {
+    navigate("/checkout");
+  };
+  const handleCardClick = (id) => {
+    navigate(`/product/${id}`);
+  };
   return (
     <section
       style={{
@@ -62,15 +68,16 @@ const BestSellingProducts = () => {
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+      {/* CHANGED: Match container width and padding */}
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Changed from "1200px"
           margin: "0 auto",
-          padding: "0 20px",
+          padding: "0 30px", // Changed: Equal padding
           boxSizing: "border-box",
           display: "grid",
           gridTemplateColumns: "1fr 2fr",
-          gap: "30px",
+          gap: "25px", // Reduced gap slightly
           alignItems: "stretch",
         }}
       >
@@ -79,7 +86,7 @@ const BestSellingProducts = () => {
           style={{
             background: "linear-gradient(135deg, #f59e0b, #fbbf24)",
             borderRadius: "20px",
-            padding: "40px 30px",
+            padding: "35px 25px", // Reduced padding slightly
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -128,7 +135,7 @@ const BestSellingProducts = () => {
 
             <div
               style={{
-                fontSize: "36px",
+                fontSize: "32px", // Slightly smaller
                 fontWeight: 800,
                 lineHeight: 1.2,
                 color: "#ffffff",
@@ -140,7 +147,7 @@ const BestSellingProducts = () => {
 
             <div
               style={{
-                fontSize: "28px",
+                fontSize: "24px", // Slightly smaller
                 fontWeight: 700,
                 color: "#ffffff",
                 opacity: 0.9,
@@ -155,9 +162,9 @@ const BestSellingProducts = () => {
                 display: "inline-block",
                 backgroundColor: "rgba(255, 255, 255, 0.2)",
                 backdropFilter: "blur(10px)",
-                padding: "12px 24px",
+                padding: "10px 20px", // Reduced padding
                 borderRadius: "50px",
-                fontSize: "14px",
+                fontSize: "13px", // Slightly smaller
                 fontWeight: 600,
                 color: "#ffffff",
                 marginBottom: "30px",
@@ -178,8 +185,8 @@ const BestSellingProducts = () => {
           >
             <div
               style={{
-                width: "240px",
-                height: "240px",
+                width: "220px", // Slightly smaller
+                height: "220px", // Slightly smaller
                 borderRadius: "50%",
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
                 display: "flex",
@@ -207,12 +214,12 @@ const BestSellingProducts = () => {
               position: "relative",
               zIndex: 2,
               marginTop: "20px",
-              padding: "14px 32px",
+              padding: "12px 28px", // Reduced padding
               borderRadius: "50px",
               border: "2px solid #ffffff",
               backgroundColor: "transparent",
               color: "#ffffff",
-              fontSize: "14px",
+              fontSize: "13px", // Slightly smaller
               fontWeight: 700,
               letterSpacing: "1px",
               cursor: "pointer",
@@ -227,6 +234,7 @@ const BestSellingProducts = () => {
               e.target.style.backgroundColor = "transparent";
               e.target.style.color = "#ffffff";
             }}
+            onClick={handleShopNow}
           >
             SHOP NOW
           </button>
@@ -234,12 +242,14 @@ const BestSellingProducts = () => {
 
         {/* Right Products Section */}
         <div>
+          {/* Header section with right padding for asymmetric effect */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "12px",
               marginBottom: "30px",
+              paddingRight: "30px", // Added for asymmetric effect
             }}
           >
             <div
@@ -252,7 +262,7 @@ const BestSellingProducts = () => {
             />
             <h2
               style={{
-                fontSize: "32px",
+                fontSize: "28px", // Slightly smaller
                 fontWeight: 700,
                 color: "#111827",
                 margin: 0,
@@ -266,7 +276,7 @@ const BestSellingProducts = () => {
                 padding: "8px 16px",
                 backgroundColor: "#fef3c7",
                 borderRadius: "20px",
-                fontSize: "14px",
+                fontSize: "13px", // Slightly smaller
                 fontWeight: 600,
                 color: "#92400e",
                 display: "flex",
@@ -279,11 +289,13 @@ const BestSellingProducts = () => {
             </div>
           </div>
 
+          {/* Products grid with right padding for asymmetric effect */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "24px",
+              gap: "20px", // Reduced gap
+              paddingRight: "30px", // Added for asymmetric effect
             }}
           >
             {products.map((product) => (
@@ -292,12 +304,13 @@ const BestSellingProducts = () => {
                 style={{
                   backgroundColor: "#ffffff",
                   borderRadius: "16px",
-                  padding: "20px",
+                  padding: "18px", // Reduced padding
                   boxShadow: "0 4px 24px rgba(0, 0, 0, 0.05)",
                   border: "1px solid #f1f5f9",
                   transition: "all 0.3s ease",
                   position: "relative",
                   overflow: "hidden",
+                  minWidth: "0", // Added: Prevent overflow
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-8px)";
@@ -311,19 +324,20 @@ const BestSellingProducts = () => {
                     "0 4px 24px rgba(0, 0, 0, 0.05)";
                   e.currentTarget.style.borderColor = "#f1f5f9";
                 }}
+                onClick={() => handleCardClick(product.id)}
               >
                 {/* Discount Badge */}
                 {product.discountBadge && (
                   <div
                     style={{
                       position: "absolute",
-                      top: "16px",
-                      left: "16px",
+                      top: "14px", // Adjusted position
+                      left: "14px", // Adjusted position
                       backgroundColor: "#ef4444",
                       color: "#ffffff",
-                      padding: "6px 14px",
+                      padding: "5px 12px", // Reduced padding
                       borderRadius: "20px",
-                      fontSize: "12px",
+                      fontSize: "11px", // Slightly smaller
                       fontWeight: 700,
                       zIndex: 2,
                     }}
@@ -335,12 +349,12 @@ const BestSellingProducts = () => {
                 {/* Category */}
                 <div
                   style={{
-                    fontSize: "12px",
+                    fontSize: "11px", // Slightly smaller
                     color: "#6b7280",
                     fontWeight: 600,
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    marginBottom: "12px",
+                    marginBottom: "10px",
                   }}
                 >
                   {product.category}
@@ -350,11 +364,11 @@ const BestSellingProducts = () => {
                 <div
                   style={{
                     width: "100%",
-                    height: "160px",
+                    height: "150px", // Reduced height
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginBottom: "20px",
+                    marginBottom: "16px",
                     backgroundColor: "#f8fafc",
                     borderRadius: "12px",
                     overflow: "hidden",
@@ -381,12 +395,12 @@ const BestSellingProducts = () => {
                 {/* Title */}
                 <h3
                   style={{
-                    fontSize: "16px",
+                    fontSize: "15px", // Slightly smaller
                     fontWeight: 600,
                     color: "#1f2937",
                     lineHeight: 1.4,
                     marginBottom: "8px",
-                    height: "44px",
+                    height: "42px", // Adjusted height
                     overflow: "hidden",
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
@@ -399,11 +413,11 @@ const BestSellingProducts = () => {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize: "14px",
+                    fontSize: "13px", // Slightly smaller
                     color: "#6b7280",
                     lineHeight: 1.5,
-                    marginBottom: "16px",
-                    height: "42px",
+                    marginBottom: "14px",
+                    height: "40px", // Adjusted height
                     overflow: "hidden",
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
@@ -419,11 +433,11 @@ const BestSellingProducts = () => {
                     style={{
                       display: "grid",
                       gridTemplateColumns: "repeat(4, 1fr)",
-                      gap: "8px",
-                      marginBottom: "20px",
+                      gap: "6px", // Reduced gap
+                      marginBottom: "16px",
                       backgroundColor: "#f3f4f6",
-                      borderRadius: "12px",
-                      padding: "12px",
+                      borderRadius: "10px", // Slightly smaller
+                      padding: "10px", // Reduced padding
                     }}
                   >
                     {[
@@ -440,7 +454,7 @@ const BestSellingProducts = () => {
                       >
                         <div
                           style={{
-                            fontSize: "18px",
+                            fontSize: "16px", // Slightly smaller
                             fontWeight: 700,
                             color: "#111827",
                             marginBottom: "4px",
@@ -450,7 +464,7 @@ const BestSellingProducts = () => {
                         </div>
                         <div
                           style={{
-                            fontSize: "11px",
+                            fontSize: "10px", // Slightly smaller
                             color: "#6b7280",
                             textTransform: "uppercase",
                             letterSpacing: "0.5px",
@@ -468,20 +482,20 @@ const BestSellingProducts = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "16px",
+                    gap: "6px", // Reduced gap
+                    marginBottom: "14px",
                   }}
                 >
                   <div style={{ display: "flex", gap: "2px" }}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <FaStar
                         key={i}
-                        size={14}
+                        size={13} // Slightly smaller
                         color={i < product.rating ? "#fbbf24" : "#d1d5db"}
                       />
                     ))}
                   </div>
-                  <span style={{ fontSize: "12px", color: "#6b7280" }}>
+                  <span style={{ fontSize: "11px", color: "#6b7280" }}>
                     ({product.reviews} reviews)
                   </span>
                 </div>
@@ -491,13 +505,13 @@ const BestSellingProducts = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "20px",
+                    gap: "10px", // Reduced gap
+                    marginBottom: "18px",
                   }}
                 >
                   <span
                     style={{
-                      fontSize: "20px",
+                      fontSize: "18px", // Slightly smaller
                       fontWeight: 700,
                       color: "#1f2937",
                     }}
@@ -507,7 +521,7 @@ const BestSellingProducts = () => {
                   {product.originalPrice && (
                     <span
                       style={{
-                        fontSize: "14px",
+                        fontSize: "13px", // Slightly smaller
                         color: "#9ca3af",
                         textDecoration: "line-through",
                       }}
@@ -521,12 +535,12 @@ const BestSellingProducts = () => {
                 <button
                   style={{
                     width: "100%",
-                    padding: "12px 0",
+                    padding: "11px 0", // Reduced padding
                     borderRadius: "8px",
                     border: "none",
                     backgroundColor: "#3b82f6",
                     color: "#ffffff",
-                    fontSize: "14px",
+                    fontSize: "13px", // Slightly smaller
                     fontWeight: 600,
                     cursor: "pointer",
                     transition: "all 0.3s ease",
@@ -539,6 +553,7 @@ const BestSellingProducts = () => {
                     e.target.style.backgroundColor = "#3b82f6";
                     e.target.style.transform = "translateY(0)";
                   }}
+                  onClick={handleBuyNow}
                 >
                   {product.buttonText}
                 </button>
@@ -546,8 +561,14 @@ const BestSellingProducts = () => {
             ))}
           </div>
 
-          {/* View All Button */}
-          <div style={{ textAlign: "center", marginTop: "40px" }}>
+          {/* View All Button with right padding for asymmetric effect */}
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "40px",
+              paddingRight: "30px",
+            }}
+          >
             <button
               style={{
                 padding: "12px 40px",

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const images = [
   "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=300&q=80",
   "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=500&q=80",
   "https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=400&q=80",
 ];

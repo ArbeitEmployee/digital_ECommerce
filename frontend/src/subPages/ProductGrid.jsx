@@ -41,7 +41,7 @@ const products = [
     title: 'Apple iPad Mini 6th Gen 8.3" 64 GB',
     price: "$499",
     image:
-      "https://images.unsplash.com/photo-1557825835-70d97c4aa06a?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80",
     rating: 5,
     buttonText: "SELECT OPTIONS",
   },

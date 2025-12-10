@@ -1,9 +1,16 @@
 // CheckOut.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
   const subtotal = 29.9;
   const total = subtotal;
+  const navigate = useNavigate();
+
+  const handlePlaceOrder = () => {
+    // after processing order, go to thank you page
+    navigate("/thank-you");
+  };
 
   return (
     <section
@@ -88,7 +95,7 @@ const CheckOut = () => {
               { label: "Cart", active: false, completed: true },
               { label: "Information", active: true },
               { label: "Finish", active: false },
-            ].map((step, idx) => (
+            ].map((step) => (
               <div
                 key={step.label}
                 style={{
@@ -426,6 +433,7 @@ const CheckOut = () => {
 
               {/* Place order button */}
               <button
+                onClick={handlePlaceOrder}
                 style={{
                   width: "100%",
                   height: "42px",

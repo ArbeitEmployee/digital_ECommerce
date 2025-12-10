@@ -34,35 +34,36 @@ const Footer = () => {
           padding: "26px 0",
         }}
       >
+        {/* CHANGED: Match container width and padding */}
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1400px", // Changed from "1200px"
             margin: "0 auto",
-            padding: "0 15px",
+            padding: "0 30px", // Changed from "0 15px"
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            gap: "24px",
+            gap: "20px", // Reduced gap
           }}
         >
           {[
             {
-              icon: <FaTruckFast size={26} />,
+              icon: <FaTruckFast size={24} />, // Slightly smaller
               title: "Worldwide Shipping",
               text: "Order Above $100",
             },
             {
-              icon: <FaArrowRotateLeft size={26} />,
+              icon: <FaArrowRotateLeft size={24} />, // Slightly smaller
               title: "Money Back Guarantee",
               text: "Guarantee With In 30 Days",
             },
             {
-              icon: <FaGift size={26} />,
+              icon: <FaGift size={24} />, // Slightly smaller
               title: "Offers And Discounts",
               text: "Back Returns In 7 Days",
             },
             {
-              icon: <FaHeadset size={26} />,
+              icon: <FaHeadset size={24} />, // Slightly smaller
               title: "24/7 Support Services",
               text: "Any Time Support",
             },
@@ -73,7 +74,7 @@ const Footer = () => {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                minWidth: "230px",
+                minWidth: "220px", // Slightly smaller
                 flex: "1 1 0",
               }}
             >
@@ -106,12 +107,12 @@ const Footer = () => {
       {/* MAIN FOOTER CONTENT */}
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Changed from "1200px"
           margin: "0 auto",
-          padding: "40px 15px 26px 15px",
+          padding: "40px 30px 26px 30px", // Changed padding
           display: "grid",
           gridTemplateColumns: "2.1fr 1.2fr 1.2fr 1.4fr 2.1fr",
-          columnGap: "60px",
+          columnGap: "50px", // Reduced gap
         }}
       >
         {/* Contact Us */}
@@ -323,11 +324,12 @@ const Footer = () => {
           padding: "16px 0 20px 0",
         }}
       >
+        {/* CHANGED: Match container width and padding */}
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1400px", // Changed from "1200px"
             margin: "0 auto",
-            padding: "0 15px",
+            padding: "0 30px", // Changed from "0 15px"
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -347,20 +349,20 @@ const Footer = () => {
           <div>
             <div
               style={{
-                maxWidth: "1200px",
+                maxWidth: "1400px", // Changed from "1200px"
                 margin: "0 auto",
-                padding: "0 15px",
+                padding: "0 30px", // Changed from "0 15px"
                 display: "flex",
                 justifyContent: "center",
-                gap: "18px",
+                gap: "16px", // Reduced gap
                 fontSize: "16px",
               }}
             >
               {/* Facebook */}
               <button
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "32px", // Slightly smaller
+                  height: "32px", // Slightly smaller
                   borderRadius: "999px",
                   border: "1px solid #e5e7eb",
                   display: "flex",
@@ -371,14 +373,14 @@ const Footer = () => {
                   color: "#1877f2", // Facebook blue
                 }}
               >
-                <FaFacebookF size={14} />
+                <FaFacebookF size={13} /> {/* Slightly smaller */}
               </button>
 
               {/* X / Twitter */}
               <button
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "32px", // Slightly smaller
+                  height: "32px", // Slightly smaller
                   borderRadius: "999px",
                   border: "1px solid #e5e7eb",
                   display: "flex",
@@ -389,14 +391,14 @@ const Footer = () => {
                   color: "#000000", // X black
                 }}
               >
-                <FaXTwitter size={14} />
+                <FaXTwitter size={13} /> {/* Slightly smaller */}
               </button>
 
               {/* Instagram */}
               <button
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "32px", // Slightly smaller
+                  height: "32px", // Slightly smaller
                   borderRadius: "999px",
                   border: "1px solid #e5e7eb",
                   display: "flex",
@@ -408,14 +410,14 @@ const Footer = () => {
                   color: "#962fbf",
                 }}
               >
-                <FaInstagram size={14} />
+                <FaInstagram size={13} /> {/* Slightly smaller */}
               </button>
 
               {/* YouTube */}
               <button
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "32px", // Slightly smaller
+                  height: "32px", // Slightly smaller
                   borderRadius: "999px",
                   border: "1px solid #e5e7eb",
                   display: "flex",
@@ -426,14 +428,14 @@ const Footer = () => {
                   color: "#ffffff",
                 }}
               >
-                <FaYoutube size={14} />
+                <FaYoutube size={13} /> {/* Slightly smaller */}
               </button>
 
               {/* Google */}
               <button
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "32px", // Slightly smaller
+                  height: "32px", // Slightly smaller
                   borderRadius: "999px",
                   border: "1px solid #e5e7eb",
                   display: "flex",
@@ -444,7 +446,7 @@ const Footer = () => {
                   color: "#4285F4", // Google blue
                 }}
               >
-                <FaGoogle size={14} />
+                <FaGoogle size={13} /> {/* Slightly smaller */}
               </button>
             </div>
           </div>
@@ -453,8 +455,8 @@ const Footer = () => {
           <div
             style={{
               display: "flex",
-              gap: "10px",
-              fontSize: "24px",
+              gap: "8px", // Reduced gap
+              fontSize: "22px", // Slightly smaller
             }}
           >
             <FaCcVisa style={{ color: "#1434CB" }} />

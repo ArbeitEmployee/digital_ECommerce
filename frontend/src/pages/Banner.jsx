@@ -8,7 +8,7 @@ const slides = [
     heading: "Apple iPhone 15 Pro\nMax Ultra Performance",
     buttonText: "BUY NOW",
     image:
-      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=2070&q=80",
     bgColor: "#000000",
     textColor: "#ffffff",
   },
@@ -18,8 +18,8 @@ const slides = [
     heading: "Sony WH-1000XM5\nNoise Cancelling Headphones",
     buttonText: "SHOP NOW",
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop",
-    bgColor: "#1a56db",
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=2070&q=80",
+    bgColor: "#0a0a0a",
     textColor: "#ffffff",
   },
   {
@@ -28,28 +28,28 @@ const slides = [
     heading: "MacBook Pro M3\nSupercharged Performance",
     buttonText: "EXPLORE",
     image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=2026&auto=format&fit=crop",
-    bgColor: "#111827",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=2070&q=80",
+    bgColor: "#111111",
     textColor: "#ffffff",
   },
   {
     id: 4,
     titleTop: "NEW ARRIVALS",
-    heading: 'Samsung 65" 4K QLED\nSmart TV with Alexa Built-in',
+    heading: 'Samsung 65" 4K QLED\nSmart TV',
     buttonText: "VIEW DEAL",
     image:
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=2070&auto=format&fit=crop",
-    bgColor: "#0ea5e9",
+      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=2070&q=80",
+    bgColor: "#0f0f0f",
     textColor: "#ffffff",
   },
   {
     id: 5,
     titleTop: "GAMING ESSENTIALS",
-    heading: "PlayStation 5 Console\nNext-Gen Gaming Experience",
+    heading: "PlayStation 5 Console\nNext-Gen Gaming",
     buttonText: "SHOP NOW",
     image:
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=2070&auto=format&fit=crop",
-    bgColor: "#003087",
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=2070&q=80",
+    bgColor: "#000000",
     textColor: "#ffffff",
   },
 ];
@@ -95,14 +95,14 @@ const Banner = () => {
           minHeight: "380px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          padding: "30px 20px",
+          justifyContent: "flex-start",
+          padding: "40px 60px 40px 30px", // CHANGED: Same padding as Navbar
           boxSizing: "border-box",
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
-        {/* Left arrow */}
+        {/* Left arrow (stays near text) */}
         <button
           onClick={prevSlide}
           style={{
@@ -291,7 +291,7 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* Right arrow */}
+        {/* Right arrow absolutely positioned over product side */}
         <button
           onClick={nextSlide}
           style={{
@@ -305,17 +305,20 @@ const Banner = () => {
             alignItems: "center",
             justifyContent: "center",
             cursor: "pointer",
-            marginLeft: "15px",
             transition: "all 0.3s ease",
             color: "#ffffff",
+            position: "absolute",
+            top: "50%", // vertically centered
+            right: "60px", // move near the right edge (tweak if needed)
+            transform: "translateY(-50%)",
           }}
           onMouseEnter={(e) => {
             e.target.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-            e.target.style.transform = "scale(1.1)";
+            e.target.style.transform = "translateY(-50%) scale(1.1)";
           }}
           onMouseLeave={(e) => {
             e.target.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            e.target.style.transform = "scale(1)";
+            e.target.style.transform = "translateY(-50%) scale(1)";
           }}
         >
           <FaChevronRight style={{ fontSize: "14px" }} />

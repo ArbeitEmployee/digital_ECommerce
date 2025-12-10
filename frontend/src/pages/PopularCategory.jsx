@@ -89,7 +89,7 @@ const PopularCategory = () => {
   };
 
   const goToBannerProducts = (id) => {
-    navigate("/products");
+    navigate("/checkout");
   };
 
   return (
@@ -101,16 +101,23 @@ const PopularCategory = () => {
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+      {/* CHANGED: Match Navbar and Banner container width but with adjusted internal spacing */}
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Same as Navbar and Banner
           margin: "0 auto",
-          padding: "0 20px",
+          padding: "0 30px", // Changed: Equal padding for grid alignment
           boxSizing: "border-box",
         }}
       >
         {/* Title with description */}
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "40px",
+            padding: "0 30px 0 0", // Added: Right padding to match asymmetric design
+          }}
+        >
           <h2
             style={{
               fontSize: "32px",
@@ -135,13 +142,14 @@ const PopularCategory = () => {
           </p>
         </div>
 
-        {/* Category cards */}
+        {/* Category cards - Adjusted to fill space better */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
-            gap: "24px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", // Increased min width
+            gap: "20px", // Reduced gap
             marginBottom: "60px",
+            paddingRight: "30px", // Added: Right padding to create asymmetric effect
           }}
         >
           {categories.map((cat) => (
@@ -156,6 +164,7 @@ const PopularCategory = () => {
                 transition: "all 0.3s ease",
                 cursor: "pointer",
                 border: "1px solid #f1f5f9",
+                minWidth: "0", // Added: Prevent overflow
               }}
               onClick={() => goToCategory(cat.id)}
               onMouseEnter={(e) => {
@@ -233,7 +242,13 @@ const PopularCategory = () => {
         </div>
 
         {/* Featured Banners */}
-        <div style={{ textAlign: "center", marginBottom: "30px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "30px",
+            padding: "0 30px 0 0", // Added: Right padding to match asymmetric design
+          }}
+        >
           <h3
             style={{
               fontSize: "24px",
@@ -249,12 +264,13 @@ const PopularCategory = () => {
           </p>
         </div>
 
-        {/* Bottom banners row */}
+        {/* Bottom banners row - Adjusted for better spacing */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "30px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", // Slightly increased min width
+            gap: "25px", // Reduced gap
+            paddingRight: "30px", // Added: Right padding for asymmetric effect
           }}
         >
           {banners.map((b) => (
@@ -267,12 +283,13 @@ const PopularCategory = () => {
                 color: "#ffffff",
                 display: "flex",
                 alignItems: "center",
-                padding: "30px",
-                minHeight: "220px",
+                padding: "25px", // Reduced padding slightly
+                minHeight: "200px", // Reduced height slightly
                 boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
                 transition: "all 0.3s ease",
                 position: "relative",
                 cursor: "pointer",
+                minWidth: "0", // Added: Prevent overflow
               }}
               onClick={() => goToBannerProducts(b.id)}
               onMouseEnter={(e) => {
@@ -301,19 +318,19 @@ const PopularCategory = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: "28px",
+                    fontSize: "24px", // Slightly smaller
                     fontWeight: 700,
                     lineHeight: 1.2,
-                    marginBottom: "12px",
+                    marginBottom: "10px",
                   }}
                 >
                   {b.titleMain}
                 </div>
                 <div
                   style={{
-                    fontSize: "22px",
+                    fontSize: "20px", // Slightly smaller
                     fontWeight: 700,
-                    marginBottom: "20px",
+                    marginBottom: "18px",
                     color: "#ffd700",
                   }}
                 >
@@ -321,12 +338,12 @@ const PopularCategory = () => {
                 </div>
                 <button
                   style={{
-                    padding: "12px 28px",
+                    padding: "10px 24px", // Slightly smaller
                     borderRadius: "50px",
                     border: "2px solid rgba(255, 255, 255, 0.9)",
                     backgroundColor: "transparent",
                     color: "#ffffff",
-                    fontSize: "14px",
+                    fontSize: "13px", // Slightly smaller
                     fontWeight: 600,
                     letterSpacing: "0.5px",
                     cursor: "pointer",
@@ -364,8 +381,8 @@ const PopularCategory = () => {
               >
                 <div
                   style={{
-                    width: "160px",
-                    height: "160px",
+                    width: "140px", // Smaller
+                    height: "140px", // Smaller
                     borderRadius: "50%",
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
                     display: "flex",

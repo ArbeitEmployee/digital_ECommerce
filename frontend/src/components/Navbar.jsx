@@ -35,9 +35,10 @@ const Navbar = () => {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            /* CHANGED: Match Banner container width and padding */
+            maxWidth: "1400px",
             margin: "0 auto",
-            padding: "0 15px",
+            padding: "0 60px 0 30px", // Changed: Match Banner horizontal padding
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -47,12 +48,10 @@ const Navbar = () => {
             (+91) 9876-543-210 &nbsp; | &nbsp; support@demo.com
           </div>
           <div style={{ display: "flex", gap: "18px" }}>
-            {["About Us", "Blog", "Contact Us", "FAQs"].map((item) => {
+            {["About Us", "Contact Us", "FAQs"].map((item) => {
               const to =
                 item === "About Us"
                   ? "/about"
-                  : item === "Blog"
-                  ? "/blog"
                   : item === "Contact Us"
                   ? "/contact"
                   : "/faqs";
@@ -84,9 +83,10 @@ const Navbar = () => {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            /* CHANGED: Match Banner container width and padding */
+            maxWidth: "1400px",
             margin: "0 auto",
-            padding: "0 15px",
+            padding: "0 60px 0 30px", // Changed: Match Banner horizontal padding
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -117,25 +117,77 @@ const Navbar = () => {
               alignItems: "center",
             }}
           >
-            {/* Category select */}
-            <div
-              style={{
-                minWidth: "150px",
-                border: "1px solid #e5e7eb",
-                borderRadius: "4px",
-                padding: "0 10px",
-                height: "38px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                fontSize: "13px",
-                color: "#374151",
-                cursor: "pointer",
-              }}
-              onClick={() => setIsCategoriesOpen((v) => !v)}
-            >
-              <span>All Categories</span>
-              <span>▾</span>
+            {/* Category select with dropdown */}
+            <div style={{ position: "relative" }}>
+              <div
+                style={{
+                  minWidth: "150px",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "4px",
+                  padding: "0 10px",
+                  height: "38px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  fontSize: "13px",
+                  color: "#374151",
+                  cursor: "pointer",
+                  backgroundColor: "#ffffff",
+                }}
+                onClick={() => setIsCategoriesOpen((v) => !v)}
+              >
+                <span>All Categories</span>
+                <span>▾</span>
+              </div>
+
+              {isCategoriesOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "42px",
+                    left: 0,
+                    width: "220px",
+                    backgroundColor: "#ffffff",
+                    borderRadius: "4px",
+                    border: "1px solid #e5e7eb",
+                    boxShadow: "0 10px 25px rgba(15,23,42,0.16)",
+                    zIndex: 30,
+                    maxHeight: "300px",
+                    overflowY: "auto",
+                  }}
+                  onMouseLeave={() => setIsCategoriesOpen(false)}
+                >
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        padding: "8px 12px",
+                        fontSize: "13px",
+                        border: "none",
+                        backgroundColor: "#ffffff",
+                        color: "#111827",
+                        cursor: "pointer",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "#ffffff";
+                      }}
+                      onClick={() => {
+                        // example: navigate to filtered shop page
+                        // navigate(`/shop?category=${encodeURIComponent(category)}`);
+                        setIsCategoriesOpen(false);
+                      }}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Search */}
@@ -177,7 +229,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Right: login, wishlist, addToCart, cart */}
+          {/* Right: login, wishlist, cart */}
           <div
             style={{
               display: "flex",
@@ -227,31 +279,10 @@ const Navbar = () => {
               </span>
             </button>
 
-            {/* New AddToCart icon → /added-to-cart */}
+            {/* Cart icon → /added-to-cart */}
             <button
               type="button"
               onClick={() => navigate("/added-to-cart")}
-              style={{
-                position: "relative",
-                width: "32px",
-                height: "32px",
-                borderRadius: "999px",
-                border: "1px solid #e5e7eb",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                backgroundColor: "#ffffff",
-                fontSize: "16px",
-              }}
-            >
-              +
-            </button>
-
-            {/* Cart icon → /cart */}
-            <button
-              type="button"
-              onClick={() => navigate("/cart")}
               style={{
                 position: "relative",
                 width: "32px",
@@ -295,9 +326,10 @@ const Navbar = () => {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            /* CHANGED: Match Banner container width and padding */
+            maxWidth: "1400px",
             margin: "0 auto",
-            padding: "0 15px",
+            padding: "0 60px 0 30px", // Changed: Match Banner horizontal padding
             display: "flex",
             alignItems: "center",
             height: "44px",
@@ -316,7 +348,6 @@ const Navbar = () => {
               cursor: "pointer",
             }}
           >
-            {/* Click area to toggle */}
             <div
               onClick={() => setIsShopByCategoriesOpen((prev) => !prev)}
               style={{ display: "flex", alignItems: "center", gap: "8px" }}
@@ -339,8 +370,6 @@ const Navbar = () => {
                   width: "220px",
                   zIndex: 20,
                 }}
-                // clicking anywhere inside does NOT close automatically
-                // you can optionally close on mouse leave of the menu itself:
                 onMouseLeave={() => setIsShopByCategoriesOpen(false)}
               >
                 {categories.map((category, index) => (
@@ -359,7 +388,6 @@ const Navbar = () => {
                       e.target.style.backgroundColor = "white";
                       e.target.style.color = "#333";
                     }}
-                    // example: navigate to a filtered shop page
                     onClick={() => {
                       // navigate(`/shop?category=${encodeURIComponent(category)}`);
                       setIsShopByCategoriesOpen(false);
@@ -374,19 +402,14 @@ const Navbar = () => {
 
           {/* Main nav links */}
           <nav style={{ display: "flex", gap: "18px" }}>
-            {[
-              "Home",
-              "Shop",
-              "Categories",
-              "Products",
-              "Top Deals",
-              "Elements",
-            ].map((item) => {
+            {["Home", "Shop", "Products"].map((item) => {
               const to =
                 item === "Home"
                   ? "/"
-                  : item === "Shop" || item === "Products"
+                  : item === "Shop"
                   ? "/shop"
+                  : item === "Products"
+                  ? "/product"
                   : "#";
               return (
                 <NavLink

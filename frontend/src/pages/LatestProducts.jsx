@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -30,7 +31,7 @@ const products = [
     price: "$499",
     originalPrice: "$549",
     discount: "9% OFF",
-    buttonText: "ADD TO CART",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=2070&auto=format&fit=crop",
     rating: 5,
@@ -44,7 +45,7 @@ const products = [
     price: "$399",
     originalPrice: "$429",
     discount: "7% OFF",
-    buttonText: "VIEW DETAILS",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=2064&auto=format&fit=crop",
     rating: 4,
@@ -58,7 +59,7 @@ const products = [
     price: "$899",
     originalPrice: "$1,099",
     discount: "18% OFF",
-    buttonText: "SHOP NOW",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=2070&auto=format&fit=crop",
     rating: 5,
@@ -86,7 +87,7 @@ const products = [
     price: "$3,899",
     originalPrice: "$4,299",
     discount: "9% OFF",
-    buttonText: "PRE-ORDER",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2053&auto=format&fit=crop",
     rating: 5,
@@ -100,7 +101,7 @@ const products = [
     price: "$1,199",
     originalPrice: "$1,399",
     discount: "14% OFF",
-    buttonText: "ADD TO CART",
+    buttonText: "BUY NOW",
     image:
       "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=2070&auto=format&fit=crop",
     rating: 5,
@@ -124,6 +125,16 @@ const products = [
 ];
 
 const LatestProducts = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
+  const handleBuyNow = () => {
+    navigate("/added-to-cart");
+  };
+
   const [startIndex, setStartIndex] = useState(0);
   const [wishlist, setWishlist] = useState({});
   const visibleCards = 4;
@@ -157,27 +168,29 @@ const LatestProducts = () => {
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+      {/* CHANGED: Match container width and padding */}
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Changed from "1200px"
           margin: "0 auto",
-          padding: "0 20px",
+          padding: "0 30px", // Changed: Equal padding
           boxSizing: "border-box",
         }}
       >
-        {/* Header */}
+        {/* Header with right padding for asymmetric effect */}
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             marginBottom: "40px",
+            paddingRight: "30px", // Added for asymmetric effect
           }}
         >
           <div>
             <h2
               style={{
-                fontSize: "32px",
+                fontSize: "28px", // Slightly smaller
                 fontWeight: 700,
                 color: "#111827",
                 marginBottom: "8px",
@@ -185,7 +198,9 @@ const LatestProducts = () => {
             >
               Latest Products
             </h2>
-            <p style={{ color: "#6b7280", fontSize: "16px" }}>
+            <p style={{ color: "#6b7280", fontSize: "15px" }}>
+              {" "}
+              {/* Slightly smaller */}
               Discover our newest arrivals with exclusive discounts
             </p>
           </div>
@@ -218,18 +233,20 @@ const LatestProducts = () => {
         </div>
 
         {/* Products Section */}
-        <div style={{ position: "relative" }}>
-          {/* Navigation Arrows */}
+        <div style={{ position: "relative", paddingRight: "30px" }}>
+          {" "}
+          {/* Added right padding */}
+          {/* Navigation Arrows - Adjusted position for wider container */}
           <button
             onClick={handlePrev}
             disabled={!canPrev}
             style={{
               position: "absolute",
-              left: "-60px",
+              left: "-45px", // Adjusted for new container
               top: "50%",
               transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
+              width: "44px", // Slightly smaller
+              height: "44px", // Slightly smaller
               borderRadius: "50%",
               border: "none",
               backgroundColor: canPrev ? "#3b82f6" : "#f3f4f6",
@@ -255,19 +272,18 @@ const LatestProducts = () => {
               }
             }}
           >
-            <FaChevronLeft size={18} />
+            <FaChevronLeft size={16} /> {/* Slightly smaller */}
           </button>
-
           <button
             onClick={handleNext}
             disabled={!canNext}
             style={{
               position: "absolute",
-              right: "-60px",
+              right: "-45px", // Adjusted for new container (30px padding + 15px offset)
               top: "50%",
               transform: "translateY(-50%)",
-              width: "48px",
-              height: "48px",
+              width: "44px", // Slightly smaller
+              height: "44px", // Slightly smaller
               borderRadius: "50%",
               border: "none",
               backgroundColor: canNext ? "#3b82f6" : "#f3f4f6",
@@ -293,15 +309,14 @@ const LatestProducts = () => {
               }
             }}
           >
-            <FaChevronRight size={18} />
+            <FaChevronRight size={16} /> {/* Slightly smaller */}
           </button>
-
           {/* Products Grid */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "30px",
+              gap: "25px", // Reduced gap
             }}
           >
             {visibleProducts.map((product) => (
@@ -310,12 +325,13 @@ const LatestProducts = () => {
                 style={{
                   backgroundColor: "#ffffff",
                   borderRadius: "16px",
-                  padding: "20px",
+                  padding: "18px", // Reduced padding
                   boxShadow: "0 4px 24px rgba(0, 0, 0, 0.05)",
                   border: "1px solid #f1f5f9",
                   transition: "all 0.3s ease",
                   position: "relative",
                   overflow: "hidden",
+                  minWidth: "0", // Added: Prevent overflow
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-10px)";
@@ -329,19 +345,20 @@ const LatestProducts = () => {
                     "0 4px 24px rgba(0, 0, 0, 0.05)";
                   e.currentTarget.style.borderColor = "#f1f5f9";
                 }}
+                onClick={() => handleCardClick(product.id)}
               >
                 {/* Discount Badge */}
                 {product.discount && (
                   <div
                     style={{
                       position: "absolute",
-                      top: "16px",
-                      left: "16px",
+                      top: "14px", // Adjusted position
+                      left: "14px", // Adjusted position
                       backgroundColor: "#ef4444",
                       color: "#ffffff",
-                      padding: "4px 12px",
+                      padding: "4px 10px", // Reduced padding
                       borderRadius: "20px",
-                      fontSize: "12px",
+                      fontSize: "11px", // Slightly smaller
                       fontWeight: 700,
                       zIndex: 2,
                     }}
@@ -354,8 +371,8 @@ const LatestProducts = () => {
                 <div
                   style={{
                     position: "absolute",
-                    top: "16px",
-                    right: "16px",
+                    top: "14px", // Adjusted position
+                    right: "14px", // Adjusted position
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
@@ -363,10 +380,13 @@ const LatestProducts = () => {
                   }}
                 >
                   <button
-                    onClick={() => toggleWishlist(product.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      toggleWishlist(product.id);
+                    }}
                     style={{
-                      width: "36px",
-                      height: "36px",
+                      width: "34px", // Slightly smaller
+                      height: "34px", // Slightly smaller
                       borderRadius: "50%",
                       border: "none",
                       backgroundColor: wishlist[product.id]
@@ -381,12 +401,16 @@ const LatestProducts = () => {
                       transition: "all 0.3s ease",
                     }}
                   >
-                    <FaHeart size={14} />
+                    <FaHeart size={13} /> {/* Slightly smaller */}
                   </button>
                   <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      handleCardClick(product.id);
+                    }}
                     style={{
-                      width: "36px",
-                      height: "36px",
+                      width: "34px", // Slightly smaller
+                      height: "34px", // Slightly smaller
                       borderRadius: "50%",
                       border: "none",
                       backgroundColor: "#ffffff",
@@ -399,7 +423,7 @@ const LatestProducts = () => {
                       transition: "all 0.3s ease",
                     }}
                   >
-                    <FaEye size={14} />
+                    <FaEye size={13} /> {/* Slightly smaller */}
                   </button>
                 </div>
 
@@ -407,11 +431,11 @@ const LatestProducts = () => {
                 <div
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "180px", // Reduced height
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginBottom: "20px",
+                    marginBottom: "16px", // Reduced margin
                     backgroundColor: "#f8fafc",
                     borderRadius: "12px",
                     overflow: "hidden",
@@ -438,12 +462,12 @@ const LatestProducts = () => {
                 {/* Category */}
                 <div
                   style={{
-                    fontSize: "12px",
+                    fontSize: "11px", // Slightly smaller
                     color: "#6b7280",
                     fontWeight: 600,
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    marginBottom: "8px",
+                    marginBottom: "6px", // Reduced margin
                   }}
                 >
                   {product.category}
@@ -452,12 +476,12 @@ const LatestProducts = () => {
                 {/* Title */}
                 <h3
                   style={{
-                    fontSize: "16px",
+                    fontSize: "15px", // Slightly smaller
                     fontWeight: 600,
                     color: "#1f2937",
                     lineHeight: 1.4,
-                    marginBottom: "8px",
-                    height: "44px",
+                    marginBottom: "6px", // Reduced margin
+                    height: "42px", // Adjusted height
                     overflow: "hidden",
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
@@ -470,11 +494,11 @@ const LatestProducts = () => {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize: "14px",
+                    fontSize: "13px", // Slightly smaller
                     color: "#6b7280",
                     lineHeight: 1.5,
-                    marginBottom: "16px",
-                    height: "42px",
+                    marginBottom: "14px", // Reduced margin
+                    height: "40px", // Adjusted height
                     overflow: "hidden",
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
@@ -489,21 +513,22 @@ const LatestProducts = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "16px",
+                    gap: "6px", // Reduced gap
+                    marginBottom: "14px", // Reduced margin
                   }}
                 >
                   <div style={{ display: "flex", gap: "2px" }}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <FaStar
                         key={i}
-                        size={12}
+                        size={11} // Slightly smaller
                         color={i < product.rating ? "#fbbf24" : "#d1d5db"}
                       />
                     ))}
                   </div>
-                  <span style={{ fontSize: "12px", color: "#6b7280" }}>
-                    ({product.reviews} reviews)
+                  <span style={{ fontSize: "11px", color: "#6b7280" }}>
+                    {" "}
+                    {/* Slightly smaller */}({product.reviews} reviews)
                   </span>
                 </div>
 
@@ -512,13 +537,13 @@ const LatestProducts = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "20px",
+                    gap: "10px", // Reduced gap
+                    marginBottom: "18px", // Reduced margin
                   }}
                 >
                   <span
                     style={{
-                      fontSize: "20px",
+                      fontSize: "18px", // Slightly smaller
                       fontWeight: 700,
                       color: "#1f2937",
                     }}
@@ -528,7 +553,7 @@ const LatestProducts = () => {
                   {product.originalPrice && (
                     <span
                       style={{
-                        fontSize: "14px",
+                        fontSize: "13px", // Slightly smaller
                         color: "#9ca3af",
                         textDecoration: "line-through",
                       }}
@@ -543,18 +568,18 @@ const LatestProducts = () => {
                   <button
                     style={{
                       flex: 1,
-                      padding: "12px 0",
+                      padding: "11px 0", // Reduced padding
                       borderRadius: "8px",
                       border: "none",
                       backgroundColor: "#3b82f6",
                       color: "#ffffff",
-                      fontSize: "14px",
+                      fontSize: "13px", // Slightly smaller
                       fontWeight: 600,
                       cursor: "pointer",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      gap: "8px",
+                      gap: "6px", // Reduced gap
                       transition: "all 0.3s ease",
                     }}
                     onMouseEnter={(e) => {
@@ -565,15 +590,18 @@ const LatestProducts = () => {
                       e.target.style.backgroundColor = "#3b82f6";
                       e.target.style.transform = "translateY(0)";
                     }}
+                    onClick={(e) => {
+                      e.stopPropagation(); // prevent card onClick
+                      handleBuyNow();
+                    }}
                   >
-                    <FaCartPlus size={14} />
+                    <FaCartPlus size={13} /> {/* Slightly smaller */}
                     {product.buttonText}
                   </button>
                 </div>
               </div>
             ))}
           </div>
-
           {/* Dots Indicator */}
           <div
             style={{
